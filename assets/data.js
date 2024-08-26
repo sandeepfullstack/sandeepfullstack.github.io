@@ -101,8 +101,8 @@ const resumeData = {
     "Jira",
     "Git",
     "GRPC",
-    "Integration (BTC, BCH, ETH, XRP, ADA, LTC, etc.)",
-    "Third-party Integration (PayPal, Stripe, push notifications, etc.)",
+    "Integration (BTC, BCH, ETH, XRP, ADA, LTC etc.)",
+    "Third-party Integration (PayPal, Stripe, push notifications etc.)",
   ],
   secondarySkills: ["PHP", "CodeIgniter", "Laravel", "React", "Angular"],
 
