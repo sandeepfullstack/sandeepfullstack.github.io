@@ -78,6 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const projectDiv = document.createElement('div');
         projectDiv.classList.add('project');
         let projestDetails=`</br><h3><u>${project.name}</h3></u>`;
+        if(!!project.link){
+          const linkArr=project.link.split(',');
+          projestDetails += linkArr.map((lnk)=>`<a href="${lnk}" target="_blank">${lnk}</a>`).join("</br>");
+          // projestDetails += `<p>link: <a href="${project.link}" target="_blank">${project.link}</a></p>`;  
+        }
+        
         projestDetails += `<p>${project.desc}</p>`;
         projestDetails += `<p><b>Technologies:</b> ${project.technology.map(tech => tech).join(' | ')}</p>`;
         // projestDetails += `<ul>${project.technology.map(tech => `<li>${tech}</li>`).join('')}</ul>`;
