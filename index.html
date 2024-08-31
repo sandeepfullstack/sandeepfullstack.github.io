@@ -98,6 +98,15 @@
       margin: 0mm;
     }
 
+    @media print {
+            .page-break {
+                page-break-before: always;
+            }
+            .no-break {
+                page-break-inside: avoid;
+            }
+        }
+
     /* @media print {
       @page {
         margin-top: 0;
@@ -144,7 +153,13 @@
       <h2>Secondary Skills</h2>
       <ul id="secondarySkills"></ul>
     </div>
-  </div>
+  <!-- </br></br></br></br></br></br> -->
+    <div class="section page-break">
+      <h2>Projects</h2>
+      <div id="projects"></div>
+    </div>  
+
+  </div>  
 
   <script src="./assets/data.js"></script>
   <script src="./assets/resume.js"></script>

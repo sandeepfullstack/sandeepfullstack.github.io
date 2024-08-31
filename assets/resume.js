@@ -72,19 +72,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set the inner HTML of the education section element in one go
   educationSection.innerHTML = educationHTML;
 
-  /*
+  
     const projectsSection = document.getElementById('projects');
-    data.projects.forEach(project => {
+    resumeData.projects.forEach(project => {
         const projectDiv = document.createElement('div');
         projectDiv.classList.add('project');
-        projectDiv.innerHTML = `
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <ul>
-                ${project.technologies.map(tech => `<li>${tech}</li>`).join('')}
-            </ul>
-        `;
+        let projestDetails=`</br><h3><u>${project.name}</h3></u>`;
+        projestDetails += `<p>${project.desc}</p>`;
+        projestDetails += `<p><b>Technologies:</b> ${project.technology.map(tech => tech).join(' | ')}</p>`;
+        // projestDetails += `<ul>${project.technology.map(tech => `<li>${tech}</li>`).join('')}</ul>`;
+
+        projectDiv.innerHTML = projestDetails;
         projectsSection.appendChild(projectDiv);
     });
-    */
+   
 });
