@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Books</title>
+    <script>
+        // Function to get query string parameter value by name
+        function getQueryStringParameter(name) {
+            const regex = new RegExp(`[?&]${name}=([^&]*)`);
+            const results = regex.exec(window.location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to set iframe src from query string
+        function setIframeSrc() {
+            // Get the 'file' parameter from the query string
+            const file = getQueryStringParameter('book');
+
+            // Check if file parameter is present and not empty
+            if (file) {
+                // Set the iframe src attribute
+                const iframe = document.getElementById('pdfIframe');
+                iframe.src = './pdf/' + file+'.pdf';
+                document.getElementById("title").textContent = file;
+                
+            } else {
+                console.error('No file parameter found in the query string.');
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = setIframeSrc;
+    </script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <iframe id="pdfIframe"></iframe>
+    <!-- <iframe src="../Bhagavad-Gita.pdf"></iframe> -->
+</body>
+
+</html>
