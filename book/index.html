@@ -6,10 +6,12 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
         }
+
         li {
             padding: 5px 0;
         }
@@ -19,26 +21,44 @@
 <body>
     <h2>Books List</h2>
     <ul id="fileList"></ul>
+    <!-- <h2>For mobile open</h2>
+    <ul id="fileListMobile"></ul> -->
     <!-- <a href="pdf.html?book=Bhagavad-Gita" target="_blank">Bhagavad-Gita</a> -->
 
     <script>
-            const fileList = document.getElementById('fileList');
-            fileList.innerHTML = ''; // Clear previous list
-            const pdfFiles=["Bhagavad-Gita","Bhagavad-Gita1","Patanjali-Yoga-Sutras-Sanskrit-English"];
-            // Iterate over the FileList object and add each file name to the list
-            for (let i = 0; i < pdfFiles.length; i++) {
-                const fileName = pdfFiles[i];
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                
-                // link.href = URL.createObjectURL('pdf.html?book='+fileName); // Create a URL for the file
-                link.href = 'pdf.html?book='+fileName; // Create a URL for the file
-                link.textContent = fileName; // Display file name
-                link.target = '_blank'; // Open in a new tab
-                
-                listItem.appendChild(link);
-                fileList.appendChild(listItem);
-            }
-    </script>    
+
+        /* const fileListMobile = document.getElementById('fileListMobile');
+        fileListMobile.innerHTML = ''; */
+
+        const fileList = document.getElementById('fileList');
+        fileList.innerHTML = ''; // Clear previous list            
+
+        const pdfFiles = ["Bhagavad-Gita", "Bhagavad-Gita1", "Patanjali-Yoga-Sutras-Sanskrit-English"];
+        // Iterate over the FileList object and add each file name to the list
+        for (let i = 0; i < pdfFiles.length; i++) {
+            const fileName = pdfFiles[i];
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+
+            // link.href = URL.createObjectURL('pdf.html?book='+fileName); // Create a URL for the file
+            link.href = 'pdf.html?book=' + fileName; // Create a URL for the file
+            link.textContent = fileName; // Display file name
+            link.target = '_blank'; // Open in a new tab
+
+            listItem.appendChild(link);
+            fileList.appendChild(listItem);
+
+
+            // for mobile 
+            /* const mobileLink = document.createElement('a');
+            mobileLink.href='pdfMobile.html?book='+fileName;
+            mobileLink.textContent = fileName; 
+            mobileLink.target = '_blank';                
+            const listItemMobile = document.createElement('li');
+            listItemMobile.appendChild(mobileLink);
+            fileListMobile.appendChild(listItemMobile); */
+        }
+    </script>
 </body>
+
 </html>
