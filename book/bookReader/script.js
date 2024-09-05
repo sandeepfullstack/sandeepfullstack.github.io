@@ -5,9 +5,11 @@ function getQueryStringParameter(name) {
 }
 
 const file = getQueryStringParameter('book');
+console.log({file});
 
-var url = file | './a.pdf';
+// var url = file | './a.pdf';
 // var url = './a.pdf';
+var url = '../pdf/Bhagavad-Gita.pdf';
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 // pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
