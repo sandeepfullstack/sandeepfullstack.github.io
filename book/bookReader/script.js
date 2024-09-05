@@ -1,4 +1,13 @@
-var url = './a.pdf';
+function getQueryStringParameter(name) {
+  const regex = new RegExp(`[?&]${name}=([^&]*)`);
+  const results = regex.exec(window.location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+const file = getQueryStringParameter('book');
+
+var url = file | './a.pdf';
+// var url = './a.pdf';
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 // pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
