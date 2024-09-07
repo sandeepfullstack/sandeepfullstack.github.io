@@ -18,6 +18,7 @@
             padding: 20px;
             margin: 0;
             text-align: center;
+            font-size: 2em;
         }
         .container {
             width: 90%;
@@ -26,14 +27,14 @@
         }
         .filter {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
+            justify-content: center;
         }
         select, button {
             padding: 10px;
-            font-size: 16px;
+            font-size: 1em;
         }
         button {
             background-color: #4CAF50;
@@ -54,56 +55,53 @@
         }
         .verse h2 {
             margin-top: 0;
-            font-size: 1.2em;
+            font-size: 1.5em;
         }
         .verse p {
-            /* line-height: 1.6; */
-            line-height: 2.1;
+            line-height: 1.6;
         }
         audio {
             margin-top: 10px;
             width: 100%;
-            max-width: 600px;
+            max-width: 100%;
         }
+        /* .green, .blue, .red {
+            color: #333;
+            border: 2px solid #8B4513;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        } */
         .green {
-            /* color: #f4f4f9; */
-            /* background-color: #4CAF50; */
             color: #4CAF50;
-            border: 2px solid #8B4513;
-            padding: 10px;
-            border-radius: 34px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
-        }    
-
+        }
         .blue {
-            /* color: #f4f4f9; */
-            /* background-color: hsl(197, 56%, 32%); */
             color: hsl(197, 56%, 32%);
-            border: 2px solid #8B4513;
-            padding: 10px;
-            border-radius: 34px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
         }
         .red {
-            /* color: #f4f4f9; */
-            /* background-color: #af814c; */
             color: #af814c;
-            border: 2px solid #8B4513;
-            padding: 10px;
-            border-radius: 34px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
         }
         @media (max-width: 768px) {
             .filter {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
             }
             select, button {
                 width: 100%;
                 box-sizing: border-box;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .verse h2 {
+                font-size: 1.2em;
+            }
+            select, button {
+                padding: 8px;
+                font-size: 0.9em;
             }
         }
         #goToTopBtn {
@@ -117,7 +115,7 @@
             border-radius: 50%;
             padding: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1em;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
@@ -127,7 +125,7 @@
         @media (max-width: 768px) {
             #goToTopBtn {
                 padding: 8px;
-                font-size: 14px;
+                font-size: 0.9em;
                 bottom: 10px;
                 right: 10px;
             }
@@ -135,7 +133,7 @@
         @media (max-width: 480px) {
             #goToTopBtn {
                 padding: 6px;
-                font-size: 12px;
+                font-size: 0.8em;
                 bottom: 10px;
                 right: 10px;
             }
@@ -210,7 +208,7 @@
                     <p><strong>Meaning:</strong> ${verse.word_meanings}</p>
                 `;
                 let tranHtml = `</br>
-                <div>`;
+                <p style="color: #333;border: 2px solid #8B4513;padding: 10px;border-radius: 20px;margin: 10px 0;background-color: #f9f9f9;">`;
                     let hinDesc='';
                     let engDesc='';
                     let sanDesc='';
@@ -227,19 +225,17 @@
                         sanDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
                         sanDesc += `<strong>Description:</strong> ${tran?.description} </br>`;
                     }
-                    /* tranHtml += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
-                    tranHtml += `<strong>Description:</strong> ${tran?.description} </br>`; */
                 }
                 if(!!hinDesc){
-                    tranHtml +='<p class="green"><strong><========> Hindi <========></strong> </br>'+hinDesc+'</p>';
+                    tranHtml +='<strong class="green"><========> Hindi <========></strong> </br>'+hinDesc;
                 }
                 if(!!engDesc){
-                    tranHtml +='<p class="blue"><strong><========> English <========></strong> </br>'+engDesc+'</p>';
+                    tranHtml +='<strong class="blue"><========> English <========></strong> </br>'+engDesc;
                 }
                 if(!!sanDesc){
-                    tranHtml +='<p class="red"><strong><========> sanskrit <========></strong> </br>'+sanDesc+'</p>';
+                    tranHtml +='<strong class="red"><========> Sanskrit <========></strong> </br>'+sanDesc;
                 }
-                tranHtml += '</div>';
+                tranHtml += '</p>';
                 verseDiv.innerHTML = vrs + tranHtml;
                 versesContainer.appendChild(verseDiv);
             }
