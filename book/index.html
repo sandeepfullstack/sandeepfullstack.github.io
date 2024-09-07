@@ -54,8 +54,8 @@
 
             // for mobile 
             const mobileLink = document.createElement('a');
-            // mobileLink.href='pdfMobile/index.html?book=../pdf/'+fileName+'.pdf';
-            mobileLink.href='pdfMobile?book=../pdf/'+fileName+'.pdf';
+            mobileLink.href='pdfMobile/index.html?book=../pdf/'+fileName+'.pdf';
+            // mobileLink.href='pdfMobile?book=../pdf/'+fileName+'.pdf';
             mobileLink.textContent = fileName; 
             mobileLink.target = '_blank';                
             const listItemMobile = document.createElement('li');
