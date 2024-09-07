@@ -57,12 +57,44 @@
             font-size: 1.2em;
         }
         .verse p {
-            line-height: 1.6;
+            /* line-height: 1.6; */
+            line-height: 2.1;
         }
         audio {
             margin-top: 10px;
             width: 100%;
             max-width: 600px;
+        }
+        .green {
+            /* color: #f4f4f9; */
+            /* background-color: #4CAF50; */
+            color: #4CAF50;
+            border: 2px solid #8B4513;
+            padding: 10px;
+            border-radius: 34px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }    
+
+        .blue {
+            /* color: #f4f4f9; */
+            /* background-color: hsl(197, 56%, 32%); */
+            color: hsl(197, 56%, 32%);
+            border: 2px solid #8B4513;
+            padding: 10px;
+            border-radius: 34px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+        .red {
+            /* color: #f4f4f9; */
+            /* background-color: #af814c; */
+            color: #af814c;
+            border: 2px solid #8B4513;
+            padding: 10px;
+            border-radius: 34px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
         }
         @media (max-width: 768px) {
             .filter {
@@ -161,8 +193,10 @@
             const versesContainer = document.getElementById('versesContainer');
             versesContainer.innerHTML = ''; // Clear previous content
             for (const verse of filteredVerses) {
-                const trans1 = await filterTranslation(verse.id, '');
-                const cmtries = await filterCommentary(verse.id, '');
+                let trans1=[];
+                 trans1 = await filterTranslation(verse.id, '');
+                let cmtries = [];
+                cmtries = await filterCommentary(verse.id, '');
                 const trans=[...trans1,...cmtries];
                 
                 const verseDiv = document.createElement('div');
@@ -176,18 +210,18 @@
                     <p><strong>Meaning:</strong> ${verse.word_meanings}</p>
                 `;
                 let tranHtml = `</br>
-                <p style="border:2px solid #8B4513;padding:10px;border-radius: 4px;margin:10px 0;background-color:#f9f9f9;">`;
+                <div>`;
                     let hinDesc='';
                     let engDesc='';
                     let sanDesc='';
                 for (const tran of trans) {
+                    if(tran.lang =='hindi'){                        
+                       hinDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
+                       hinDesc += `<strong>Description:</strong> ${tran?.description} </br>`;
+                   }
                     if(tran.lang =='english'){                        
                         engDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
                         engDesc += `<strong>Description:</strong> ${tran?.description} </br>`;
-                    }
-                     if(tran.lang =='hindi'){                        
-                        hinDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
-                        hinDesc += `<strong>Description:</strong> ${tran?.description} </br>`;
                     }
                     if(tran.lang =='sanskrit'){
                         sanDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
@@ -197,15 +231,15 @@
                     tranHtml += `<strong>Description:</strong> ${tran?.description} </br>`; */
                 }
                 if(!!hinDesc){
-                    tranHtml +='<strong style="color:green;"><========> Hindi <========></strong> </br>'+hinDesc;
+                    tranHtml +='<p class="green"><strong><========> Hindi <========></strong> </br>'+hinDesc+'</p>';
                 }
                 if(!!engDesc){
-                    tranHtml +='<strong style="color:blue;"><========> English <========></strong> </br>'+engDesc;
+                    tranHtml +='<p class="blue"><strong><========> English <========></strong> </br>'+engDesc+'</p>';
                 }
                 if(!!sanDesc){
-                    tranHtml +='<strong style="color:red;"><========> sanskrit <========></strong> </br>'+sanDesc;
+                    tranHtml +='<p class="red"><strong><========> sanskrit <========></strong> </br>'+sanDesc+'</p>';
                 }
-                tranHtml += '</p>';
+                tranHtml += '</div>';
                 verseDiv.innerHTML = vrs + tranHtml;
                 versesContainer.appendChild(verseDiv);
             }
