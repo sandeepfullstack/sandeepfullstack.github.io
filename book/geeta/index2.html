@@ -74,40 +74,6 @@
                 box-sizing: border-box;
             }
         }
-        #goToTopBtn {
-            display: none; /* Initially hidden */
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        #goToTopBtn:hover {
-            background-color: #45a049;
-        }
-        @media (max-width: 768px) {
-            #goToTopBtn {
-                padding: 8px;
-                font-size: 14px;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-        @media (max-width: 480px) {
-            #goToTopBtn {
-                padding: 6px;
-                font-size: 12px;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -125,7 +91,6 @@
             <!-- Verses will be populated here -->
         </div>
     </div>
-    <button id="goToTopBtn" title="Go to Top">Top</button>
     <script src="./verse.js"></script>
     <script src="./translation.js"></script>
     <script>
@@ -159,11 +124,11 @@
                 const vrs = `
                     <h2>${verse.chapter_number}:${verse.verse_number} ${verse.title}</h2>
                     ${audio}
-                    <p><strong>Sloka:</strong> ${verse.text}</p>
+                    <p><strong>Slok:</strong> ${verse.text}</p>
                     <p><strong>Transliteration:</strong> ${verse.transliteration}</p>
                     <p><strong>Meaning:</strong> ${verse.word_meanings}</p>
                 `;
-                let tranHtml = '</br><p>';
+                let tranHtml = '<p>';
                 for (const tran of trans) {
                     tranHtml += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
                     tranHtml += `<strong>Description:</strong> ${tran?.description} </br>`;
@@ -186,26 +151,6 @@
         // Initial setup
         populateChapterFilter();
         filterVerses(); // Display all verses initially
-
-        // Get the button
-        const goToTopBtn = document.getElementById('goToTopBtn');
-
-        // Show the button when scrolling down
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) { // Show button after 300px scroll
-                goToTopBtn.style.display = 'block';
-            } else {
-                goToTopBtn.style.display = 'none';
-            }
-        });
-
-        // Scroll to the top when the button is clicked
-        goToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
     </script>
 </body>
 </html>
