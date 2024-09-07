@@ -11,14 +11,16 @@
             padding: 0;
             background: #f4f4f9;
             color: #333;
+            width: 100%;
+            max-width: 100%;
         }
         h1 {
             background: #4CAF50;
             color: white;
             padding: 20px;
-            margin: 0;
+            /* margin: 0; */
             text-align: center;
-            font-size: 2em;
+            font-size: 2em;            
         }
         .container {
             width: 90%;
@@ -137,9 +139,9 @@
         }
     </style>
 </head>
-<body>
-    <h1>Shree Bhagavad Gita</br>(Priyanshu Panghal)</h1>
+<body>    
     <div class="container">
+        <h1>Shree Bhagavad Gita</br>(Priyanshu Panghal)</h1>
         <div class="filter">
             <label for="chapterFilter">Filter by Chapter:</label>
             <select id="chapterFilter">
@@ -191,7 +193,7 @@
                 let trans1=[];
                  trans1 = await filterTranslation(verse.id, '');
                 let cmtries = [];
-                cmtries = await filterCommentary(verse.id, '');
+                // cmtries = await filterCommentary(verse.id, '');
                 const trans=[...trans1,...cmtries];
                 
                 const verseDiv = document.createElement('div');
