@@ -128,12 +128,21 @@
     <button id="goToTopBtn" title="Go to Top">Top</button>
     <script src="./verse.js"></script>
     <script src="./translation.js"></script>
+    <script src="./commentary.js"></script>
     <script>
         function filterTranslation(verseId, language='hindi') {
             if(language==''){
                 return translation.filter(item => item.verse_id === verseId);
             }else{
                 return translation.filter(item => item.verse_id === verseId && item.lang === language);
+            }  
+        }
+
+        function filterCommentary(verseId, language='hindi') {
+            if(language==''){
+                return commentary.filter(item => item.verse_id === verseId);
+            }else{
+                return commentary.filter(item => item.verse_id === verseId && item.lang === language);
             }  
         }
 
@@ -152,7 +161,10 @@
             const versesContainer = document.getElementById('versesContainer');
             versesContainer.innerHTML = ''; // Clear previous content
             for (const verse of filteredVerses) {
-                const trans = await filterTranslation(verse.id, '');
+                const trans1 = await filterTranslation(verse.id, '');
+                const cmtries = await filterCommentary(verse.id, '');
+                const trans=[...trans1,...cmtries];
+                
                 const verseDiv = document.createElement('div');
                 verseDiv.className = 'verse';
                 const audio = `<audio controls><source src="./audio/${verse.chapter_number}/${verse.verse_number}.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>`;
@@ -165,9 +177,33 @@
                 `;
                 let tranHtml = `</br>
                 <p style="border:2px solid #8B4513;padding:10px;border-radius: 4px;margin:10px 0;background-color:#f9f9f9;">`;
+                    let hinDesc='';
+                    let engDesc='';
+                    let sanDesc='';
                 for (const tran of trans) {
-                    tranHtml += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
-                    tranHtml += `<strong>Description:</strong> ${tran?.description} </br>`;
+                    if(tran.lang =='english'){                        
+                        engDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
+                        engDesc += `<strong>Description:</strong> ${tran?.description} </br>`;
+                    }
+                     if(tran.lang =='hindi'){                        
+                        hinDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
+                        hinDesc += `<strong>Description:</strong> ${tran?.description} </br>`;
+                    }
+                    if(tran.lang =='sanskrit'){
+                        sanDesc += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
+                        sanDesc += `<strong>Description:</strong> ${tran?.description} </br>`;
+                    }
+                    /* tranHtml += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
+                    tranHtml += `<strong>Description:</strong> ${tran?.description} </br>`; */
+                }
+                if(!!hinDesc){
+                    tranHtml +='<strong style="color:green;"><========> Hindi <========></strong> </br>'+hinDesc;
+                }
+                if(!!engDesc){
+                    tranHtml +='<strong style="color:blue;"><========> English <========></strong> </br>'+engDesc;
+                }
+                if(!!sanDesc){
+                    tranHtml +='<strong style="color:red;"><========> sanskrit <========></strong> </br>'+sanDesc;
                 }
                 tranHtml += '</p>';
                 verseDiv.innerHTML = vrs + tranHtml;
