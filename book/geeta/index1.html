@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagavad Gita Verses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .verse {
+            margin-bottom: 20px;
+        }
+        .filter {
+            margin-bottom: 20px;
+        }
+        select, button {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shree Bhagavad Gita Verses</h1>
+    <div class="filter">
+        <label for="chapterFilter">Filter by Chapter:</label>
+        <select id="chapterFilter">
+            <option value="all">All Chapters</option>
+            <!-- Chapter options will be populated here -->
+        </select>
+        <button onclick="filterVerses()">Apply Filter</button>
+    </div>
+    <!-- <audio controls>
+        <source src="./audio/1/1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> -->
+    <div id="versesContainer">
+        <!-- Verses will be populated here -->
+    </div>
+    <script src="./verse.js"></script>
+    <script src="./translation.js"></script>
+    <script>
+        function filterTranslation(verseId, language='hindi') {
+            if(language==''){
+                return translation.filter(item => item.verse_id === verseId);
+            }else{
+                return translation.filter(item => item.verse_id === verseId && item.lang === language);
+            }  
+        }
+
+        function populateChapterFilter() {
+            const chapterFilter = document.getElementById('chapterFilter');
+            const chapters = [...new Set(verses.map(v => v.chapter_number))];
+            chapters.forEach(chapter => {
+                const option = document.createElement('option');
+                option.value = chapter;
+                option.textContent = `Chapter ${chapter}`;
+                chapterFilter.appendChild(option);
+            });
+        }
+
+        async function displayVerses(filteredVerses) {
+            const versesContainer = document.getElementById('versesContainer');
+            versesContainer.innerHTML = ''; // Clear previous content
+            filteredVerses.forEach(async(verse) => {
+                const trans=await filterTranslation(verse.id,'');
+                const verseDiv = document.createElement('div');
+                verseDiv.className = 'verse';
+                let audio='';
+                audio=`<audio controls><source src="./audio/${verse.chapter_number}/${verse.verse_number}.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>`;
+                const vrs= `
+                    <h2>${verse.chapter_number}:${verse.verse_number} ${verse.title}</h2>
+                                        ${audio}
+                    <p><strong>Text:</strong> ${verse.text}</p>
+                    <p><strong>Transliteration:</strong> ${verse.transliteration}</p>
+                    <p><strong>Meaning:</strong> ${verse.word_meanings}</p>
+                `;
+                let tranHtml=`<p>`;
+                trans.forEach(async(tran)=>{
+                    tranHtml +=`<strong>AuthorName :</strong> ${tran?.authorName} </br>`;
+                    tranHtml +=`<strong>Description :</strong> ${tran?.description} </br>`;
+                })
+                tranHtml += `</p>`;
+                verseDiv.innerHTML = vrs+tranHtml;
+                versesContainer.appendChild(verseDiv);
+            });
+        }
+
+        function filterVerses() {
+            const chapterFilter = document.getElementById('chapterFilter');
+            const selectedChapter = chapterFilter.value;
+            const filteredVerses = selectedChapter === 'all'
+                ? verses
+                : verses.filter(v => v.chapter_number == selectedChapter);
+            displayVerses(filteredVerses);
+        }
+
+        // Initial setup
+        populateChapterFilter();
+        filterVerses(); // Display all verses initially
+    </script>
+</body>
+</html>
