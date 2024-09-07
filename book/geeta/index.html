@@ -163,7 +163,8 @@
                     <p><strong>Transliteration:</strong> ${verse.transliteration}</p>
                     <p><strong>Meaning:</strong> ${verse.word_meanings}</p>
                 `;
-                let tranHtml = '</br><p>';
+                let tranHtml = `</br>
+                <p style="border:2px solid #8B4513;padding:10px;border-radius: 4px;margin:10px 0;background-color:#f9f9f9;">`;
                 for (const tran of trans) {
                     tranHtml += `<strong>Author Name:</strong> ${tran?.authorName} </br>`;
                     tranHtml += `<strong>Description:</strong> ${tran?.description} </br>`;
