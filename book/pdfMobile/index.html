@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Viewer</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 90vh;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+      #canvas-container {
+        width: 100%;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+        border: 1px solid black;
+        box-sizing: border-box;
+        padding: 10px;
+      }
+      .pdf-page {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        page-break-inside: avoid;
+      }
+      #controls {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-top: 1px solid gray;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+      }
+      #controls button, #controls input {
+        padding: 5px 10px;
+        font-size: 16px;
+      }
+      #page_input {
+        width: 60px;
+      }
+      @media (max-width: 600px) {
+        #controls {
+          flex-direction: column;
+        }
+        #page_input {
+          width: 100%;
+        }
+      }
+    </style>
+    <script>
+      // http://localhost/a/index.html?book=./assets/Bhagavad-Gita.pdf
+      function getQueryStringParameter(name) {
+        const regex = new RegExp(`[?&]${name}=([^&]*)`);
+        const results = regex.exec(window.location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      }
+      const file = getQueryStringParameter('book');
+      let url = './assets/Bhagavad-Gita.pdf';
+      if (!!file) {
+        url = file;
+      }
+    </script>
+</head>
+<body>  
+  <script src="./assets/pdf.mjs" type="module"></script>
+
+  <script type="module">
+    var { pdfjsLib } = globalThis;
+          // The workerSrc property shall be specified.
+          pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/pdf.worker.mjs';    
+
+    let pdfDoc = null,
+        currentPageNum = 1,
+        pagesPerSet = 10,
+        scale = 2,  // Increased scale for higher quality
+        totalPages = 0,
+        startPage = 1,
+        endPage = pagesPerSet;
+
+    function renderPage(num, canvas) {
+      if (!pdfDoc) return;
+
+      pdfDoc.getPage(num).then(page => {
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const ctx = canvas.getContext('2d');
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        // Render page to canvas
+        page.render(renderContext);
+      });
+    }
+
+    function renderPages(start, end) {
+      const container = document.getElementById('canvas-container');
+      container.innerHTML = ''; // Clear previous pages
+
+      for (let i = start; i <= end && i <= totalPages; i++) {
+        const canvas = document.createElement('canvas');
+        canvas.className = 'pdf-page';
+        container.appendChild(canvas);
+        renderPage(i, canvas);
+      }
+
+      // Scroll to top after rendering pages
+      container.scrollTop = 0;
+
+      document.getElementById('page_num').textContent = start;
+    }
+
+    function onPrevSet() {
+      if (startPage <= pagesPerSet) return; // Prevent going below page 1
+
+      endPage = startPage - 1;
+      startPage = Math.max(1, startPage - pagesPerSet);
+      renderPages(startPage, endPage);
+    }
+    document.getElementById('load_prev_set').addEventListener('click', onPrevSet);
+
+    function onNextSet() {
+      if (endPage >= totalPages) return; // Prevent going beyond the total number of pages
+
+      startPage = endPage + 1;
+      endPage = Math.min(totalPages, endPage + pagesPerSet);
+      renderPages(startPage, endPage);
+    }
+    document.getElementById('load_next_set').addEventListener('click', onNextSet);
+
+    function goToPage() {
+      const pageNumber = parseInt(document.getElementById('page_input').value);
+      if (pageNumber >= 1 && pageNumber <= totalPages) {
+        startPage = Math.floor((pageNumber - 1) / pagesPerSet) * pagesPerSet + 1;
+        endPage = Math.min(startPage + pagesPerSet - 1, totalPages);
+        renderPages(startPage, endPage);
+      } else {
+        alert('Page number out of range.');
+      }
+    }
+    document.getElementById('go').addEventListener('click', goToPage);
+
+    pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
+      pdfDoc = pdfDoc_;
+      totalPages = pdfDoc.numPages;
+      endPage = Math.min(pagesPerSet, totalPages);
+      renderPages(startPage, endPage);
+      document.getElementById('page_count').textContent = totalPages;
+    });
+  </script>
+
+  <div id="canvas-container"></div>
+
+  <div id="controls">
+    <button id="load_prev_set">Load Previous Set</button>
+    <button id="load_next_set">Load Next Set</button>
+    <input type="number" id="page_input" min="1" />
+    <button id="go">Go</button>
+    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+  </div>
+</body>
+</html>
