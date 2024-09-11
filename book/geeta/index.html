@@ -196,7 +196,7 @@
                 let trans1=[];
                  trans1 = await filterTranslation(verse.id, '');
                 let cmtries = [];
-                // cmtries = await filterCommentary(verse.id, '');
+                cmtries = await filterCommentary(verse.id, '');
                 const trans=[...trans1,...cmtries];
                 
                 const verseDiv = document.createElement('div');
