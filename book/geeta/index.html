@@ -109,7 +109,7 @@
         #goToTopBtn {
             display: none; /* Initially hidden */
             position: fixed;
-            bottom: 20px;
+            bottom: 20px;            
             right: 20px;
             background-color: #4CAF50;
             color: white;
@@ -128,16 +128,16 @@
             #goToTopBtn {
                 padding: 8px;
                 font-size: 0.9em;
-                bottom: 10px;
                 right: 10px;
+                bottom: 10px;
             }
         }
         @media (max-width: 480px) {
             #goToTopBtn {
                 padding: 6px;
                 font-size: 0.8em;
-                bottom: 10px;
                 right: 10px;
+                bottom: 10px;
             }
         }
     </style>
@@ -156,8 +156,8 @@
         <div id="versesContainer">
             <!-- Verses will be populated here -->
         </div>
-    </div>
-    <button id="goToTopBtn" title="Go to Top">Top</button>
+        <button id="goToTopBtn" title="Go to Top">Top</button>
+    </div>    
     <script src="./verse.js"></script>
     <script src="./translation.js"></script>
     <script src="./commentary.js"></script>
@@ -196,7 +196,7 @@
                 let trans1=[];
                  trans1 = await filterTranslation(verse.id, '');
                 let cmtries = [];
-                cmtries = await filterCommentary(verse.id, '');
+                // cmtries = await filterCommentary(verse.id, '');
                 const trans=[...trans1,...cmtries];
                 
                 const verseDiv = document.createElement('div');
