@@ -90,9 +90,9 @@
                 width: 100%;
                 box-sizing: border-box;
             }
-            #goToTopBtn {
+            /* #goToTopBtn {
                 width: 7%;
-            }
+            } */
         }
         @media (max-width: 480px) {
             h1 {
@@ -106,8 +106,8 @@
                 font-size: 0.9em;
             }
         }
-        #goToTopBtn {
-            display: none; /* Initially hidden */
+        /* #goToTopBtn {
+            display: none; 
             position: fixed;
             bottom: 20px;            
             right: 20px;
@@ -139,7 +139,7 @@
                 right: 10px;
                 bottom: 10px;
             }
-        }
+        } */
     </style>
 </head>
 <body>    
@@ -156,7 +156,7 @@
         <div id="versesContainer">
             <!-- Verses will be populated here -->
         </div>
-        <button id="goToTopBtn" title="Go to Top">Top</button>
+        <!-- <button id="goToTopBtn" title="Go to Top">Top</button> -->
     </div>    
     <script src="./verse.js"></script>
     <script src="./translation.js"></script>
@@ -257,24 +257,22 @@
         filterVerses(); // Display all verses initially
 
         // Get the button
-        const goToTopBtn = document.getElementById('goToTopBtn');
-
-        // Show the button when scrolling down
+        /* const goToTopBtn = document.getElementById('goToTopBtn');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) { // Show button after 300px scroll
+            if (window.scrollY > 300) { 
                 goToTopBtn.style.display = 'block';
             } else {
                 goToTopBtn.style.display = 'none';
             }
         });
 
-        // Scroll to the top when the button is clicked
         goToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-        });
+        }); */
+
     </script>
 </body>
 </html>
