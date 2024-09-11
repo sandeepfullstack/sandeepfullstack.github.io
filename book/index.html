@@ -21,17 +21,17 @@
 <body>
     <h2>Shri Krishan Library</h2>
     <ul id="audio">
-        <li><a href="./geeta/index.html" target="_blank">Shree Bhagavad Gita audio+text</a></li>
+        <li><a href="./geeta/index.html">Shree Bhagavad Gita audio+text</a></li>
     </ul>
     <ul id="fileList"></ul>
-    <!-- <h2>Books List For Mobile</h2>
-    <ul id="fileListMobile"></ul> -->
+    <h2>For Mobile</h2>
+    <ul id="fileListMobile"></ul>
     <!-- <a href="pdf.html?book=Bhagavad-Gita" target="_blank">Bhagavad-Gita</a> -->
 
     <script>
 
-        /* const fileListMobile = document.getElementById('fileListMobile');
-        fileListMobile.innerHTML = ''; */
+        const fileListMobile = document.getElementById('fileListMobile');
+        fileListMobile.innerHTML = '';
 
         const fileList = document.getElementById('fileList');
         fileList.innerHTML = ''; // Clear previous list            
@@ -53,13 +53,13 @@
 
 
             // for mobile 
-            /* const mobileLink = document.createElement('a');
+            const mobileLink = document.createElement('a');
             mobileLink.href='pdfMobile/index.html?book=../pdf/'+fileName+'.pdf';            
             mobileLink.textContent = fileName; 
-            mobileLink.target = '_blank';                
+            // mobileLink.target = '_blank';                
             const listItemMobile = document.createElement('li');
             listItemMobile.appendChild(mobileLink);
-            fileListMobile.appendChild(listItemMobile); */
+            fileListMobile.appendChild(listItemMobile);
         }
     </script>
 </body>
