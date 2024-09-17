@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Cheatsheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #007acc;
+        }
+
+        .section pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TypeScript Cheatsheet</h1>
+    <div id="cheatsheet"></div>
+
+    <script>
+
+        function renderCheatsheet(data, divId) {
+            const container = document.getElementById(divId);
+            let html = '';
+
+            for (const [section, content] of Object.entries(data["TypeScript Cheatsheet"])) {
+                html += `<div class="section"><h2>${section}</h2>`;
+
+                for (const [category, details] of Object.entries(content)) {
+                    html += `<h3>${category}</h3><pre>${JSON.stringify(details, null, 2)}</pre>`;
+                }
+
+                html += `</div>`;
+            }
+
+            container.innerHTML = html;
+        }
+
+        const coursesJsonFile = ['typeScript'];
+        const course = coursesJsonFile[0];
+
+        fetch(`./assets/${course}.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                renderCheatsheet(data, 'cheatsheet')
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    </script>
+</body>
+
+</html>

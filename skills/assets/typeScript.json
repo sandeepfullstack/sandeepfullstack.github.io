@@ -1,0 +1,124 @@
+{
+  "TypeScript Cheatsheet": {
+    "Beginner": {
+      "Variables": {
+        "let": "Block-scoped variable, can be reassigned",
+        "const": "Block-scoped constant, cannot be reassigned",
+        "var": "Function-scoped variable (not recommended)"
+      },
+      "Basic Types": {
+        "number": "Represents numeric values",
+        "string": "Represents text values",
+        "boolean": "Represents true/false values",
+        "null": "Represents a null value",
+        "undefined": "Represents an undefined value"
+      },
+      "Arrays": {
+        "Basic": "let array: number[] = [1, 2, 3];",
+        "Generic": "let array: Array<number> = [1, 2, 3];"
+      },
+      "Tuples": {
+        "Syntax": "let tuple: [string, number] = ['hello', 10];",
+        "Access": "tuple[0]; tuple[1];"
+      },
+      "Enums": {
+        "Syntax": "enum Color { Red, Green, Blue }",
+        "Usage": "let color: Color = Color.Green;"
+      },
+      "Functions": {
+        "Declaration": "function add(a: number, b: number): number { return a + b; }",
+        "Arrow Function": "const add = (a: number, b: number): number => a + b;",
+        "Optional Parameters": "function greet(name: string, greeting?: string): void { ... }",
+        "Default Parameters": "function greet(name: string, greeting: string = 'Hello'): void { ... }"
+      },
+      "Interfaces": {
+        "Syntax": "interface Person { name: string; age: number; }",
+        "Implementation": "const person: Person = { name: 'John', age: 30 };"
+      },
+      "Classes": {
+        "Basic": "class Person { constructor(public name: string, public age: number) {} }",
+        "Inheritance": "class Employee extends Person { ... }",
+        "Access Modifiers": {
+          "public": "Accessible from anywhere",
+          "private": "Accessible only within the class",
+          "protected": "Accessible within the class and its subclasses"
+        }
+      }
+    },
+    "Intermediate": {
+      "Generics": {
+        "Basic": "function identity<T>(arg: T): T { return arg; }",
+        "Class": "class Box<T> { content: T; constructor(content: T) { this.content = content; } }",
+        "Interface": "interface Wrapper<T> { value: T; }"
+      },
+      "Union and Intersection Types": {
+        "Union": "type StringOrNumber = string | number;",
+        "Intersection": "type PersonWithContact = Person & { email: string; }"
+      },
+      "Type Aliases": {
+        "Syntax": "type ID = string | number;",
+        "Usage": "let id: ID = '123';"
+      },
+      "Type Guards": {
+        "typeof": "if (typeof value === 'string') { ... }",
+        "instanceof": "if (value instanceof Date) { ... }"
+      },
+      "Type Assertions": {
+        "Basic": "const str = value as string;",
+        "Non-null Assertion": "const length = str!.length;"
+      },
+      "Literal Types": {
+        "Syntax": "type Direction = 'left' | 'right';",
+        "Usage": "let direction: Direction = 'left';"
+      },
+      "Advanced Functions": {
+        "Overloads": "function greet(person: string): void; function greet(person: string, age: number): void; function greet(person: string, age?: number): void { ... }",
+        "Rest Parameters": "function sum(...numbers: number[]): number { return numbers.reduce((acc, num) => acc + num, 0); }"
+      }
+    },
+    "Advanced": {
+      "Decorators": {
+        "Syntax": "@decorator class MyClass { }",
+        "Usage": "Experimental feature, may require tsconfig.json configuration"
+      },
+      "Mapped Types": {
+        "Syntax": "type ReadOnly<T> = { readonly [K in keyof T]: T[K]; }",
+        "Usage": "type Person = { name: string; age: number; }; type ReadOnlyPerson = ReadOnly<Person>;"
+      },
+      "Conditional Types": {
+        "Syntax": "type IsString<T> = T extends string ? 'Yes' : 'No';",
+        "Usage": "type Result = IsString<number>; // 'No'"
+      },
+      "Utility Types": {
+        "Partial": "type Partial<T> = { [P in keyof T]?: T[P]; }",
+        "Required": "type Required<T> = { [P in keyof T]-?: T[P]; }",
+        "Pick": "type Pick<T, K extends keyof T> = { [P in K]: T[P]; }",
+        "Omit": "type Omit<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P]; }"
+      },
+      "Advanced Classes": {
+        "Abstract Classes": "abstract class Animal { abstract makeSound(): void; }",
+        "Static Properties": "class MathUtil { static PI: number = 3.14; }"
+      },
+      "Namespaces": {
+        "Syntax": "namespace MyNamespace { export class MyClass { } }",
+        "Usage": "const obj = new MyNamespace.MyClass();"
+      },
+      "Modules": {
+        "Export": "export const myValue = 42; export function myFunction() { }",
+        "Import": "import { myValue, myFunction } from './module';"
+      },
+      "tsconfig.json": {
+        "compilerOptions": {
+          "target": "ES6",
+          "module": "commonjs",
+          "strict": true,
+          "esModuleInterop": true,
+          "skipLibCheck": true,
+          "moduleResolution": "node",
+          "experimentalDecorators": true,
+          "emitDecoratorMetadata": true
+        }
+      }
+    }
+  }
+}
