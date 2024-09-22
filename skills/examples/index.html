@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Cheatsheet</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>TypeScript Cheatsheet</h1>
+    <div id="cheatsheet"></div>
+
+    <script>
+        fetch('cheatsheet1.json')
+            .then(response => response.json())
+            .then(data => {
+                const cheatsheetDiv = document.getElementById('cheatsheet');
+                data.cheatsheet.forEach(item => {
+                    const section = document.createElement('section');
+                    const title = document.createElement('h2');
+                    const description = document.createElement('h3');
+                    title.textContent = item.title;
+                    description.textContent = item?.description;
+                    section.appendChild(title);
+                    section.appendChild(description);
+                    
+                    const codeBlock = document.createElement('pre');
+                    codeBlock.textContent = item.code.join('\n');
+                    section.appendChild(codeBlock);
+                    
+                    cheatsheetDiv.appendChild(section);
+                });
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    </script>
+</body>
+</html>

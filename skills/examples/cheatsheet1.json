@@ -1,0 +1,217 @@
+{
+    "cheatsheet": [
+      {
+        "title": "Any",
+        "description": "The `any` type allows you to opt-out of type checking for a variable.",
+        "code": [
+          "let something: any = 4;",
+          "something = 'now a string';"
+        ]
+      },
+      {
+        "title": "Arrays",
+        "description": "Arrays can be defined using a type followed by brackets.",
+        "code": [
+          "let numbers: number[] = [1, 2, 3, 4];",
+          "let strings: Array<string> = ['a', 'b', 'c'];"
+        ]
+      },
+      {
+        "title": "Boolean",
+        "description": "The boolean type represents true/false values.",
+        "code": [
+          "let isActive: boolean = true;",
+          "isActive = false;"
+        ]
+      },
+      {
+        "title": "Classes",
+        "description": "Classes are blueprints for creating objects with properties and methods.",
+        "code": [
+          "class Person {",
+          "    constructor(public name: string) {}",
+          "}",
+          "const person = new Person('Alice');"
+        ]
+      },
+      {
+        "title": "Decorators",
+        "description": "Decorators are special functions that can modify classes or properties.",
+        "code": [
+          "function log(target: any, key: string) {",
+          "    console.log(`${key} was called`);",
+          "}",
+          "class MyClass {",
+          "    @log",
+          "    myMethod() {}",
+          "}"
+        ]
+      },
+      {
+        "title": "Enums",
+        "description": "Enums allow you to define a set of named constants.",
+        "code": [
+          "enum Direction {",
+          "    Up = 1,",
+          "    Down,",
+          "    Left,",
+          "    Right",
+          "}",
+          "let move: Direction = Direction.Up;"
+        ]
+      },
+      {
+        "title": "Functions",
+        "description": "Functions are reusable blocks of code that can take parameters and return values.",
+        "code": [
+          "function add(x: number, y: number): number {",
+          "    return x + y;",
+          "}",
+          "const result = add(5, 10);"
+        ]
+      },
+      {
+        "title": "Generics",
+        "description": "Generics allow you to create reusable components that work with any data type.",
+        "code": [
+          "function identity<T>(arg: T): T {",
+          "    return arg;",
+          "}",
+          "let output = identity<string>('Hello, Generics!');"
+        ]
+      },
+      {
+        "title": "Interfaces",
+        "description": "Interfaces define the structure of an object.",
+        "code": [
+          "interface User {",
+          "    id: number;",
+          "    name: string;",
+          "}",
+          "let user: User = { id: 1, name: 'Jane Doe' };"
+        ]
+      },
+      {
+        "title": "Keyof Operator",
+        "description": "The `keyof` operator creates a union of string literal types from the keys of an object.",
+        "code": [
+          "interface Person {",
+          "    name: string;",
+          "    age: number;",
+          "}",
+          "type PersonKeys = keyof Person; // 'name' | 'age'"
+        ]
+      },
+      {
+        "title": "Literal Types",
+        "description": "Literal types allow you to specify the exact value a string or number can take.",
+        "code": [
+          "type Direction = 'up' | 'down';",
+          "let move: Direction = 'up';"
+        ]
+      },
+      {
+        "title": "Modules",
+        "description": "Modules are files that export and import code.",
+        "code": [
+          "// Exporting a module",
+          "export const PI = 3.14;",
+          "// Importing a module",
+          "import { PI } from './constants';"
+        ]
+      },
+      {
+        "title": "Nullable Types",
+        "description": "Nullable types allow variables to hold null or undefined values.",
+        "code": [
+          "let nullableString: string | null = null;",
+          "nullableString = 'Now I have a value';"
+        ]
+      },
+      {
+        "title": "Promises",
+        "description": "Promises represent the eventual completion (or failure) of an asynchronous operation.",
+        "code": [
+          "function fetchData(): Promise<string> {",
+          "    return new Promise((resolve) => resolve('Data fetched'));",
+          "}",
+          "fetchData().then(data => console.log(data));"
+        ]
+      },
+      {
+        "title": "Rest Parameters",
+        "description": "Rest parameters allow you to pass an indefinite number of arguments as an array.",
+        "code": [
+          "function sum(...numbers: number[]): number {",
+          "    return numbers.reduce((acc, num) => acc + num, 0);",
+          "}",
+          "const total = sum(1, 2, 3, 4);"
+        ]
+      },
+      {
+        "title": "Static Types",
+        "description": "TypeScript allows you to define static types for variables, functions, and class properties.",
+        "code": [
+          "let count: number = 0;",
+          "const greet = (name: string): string => `Hello, ${name}!`;"
+        ]
+      },
+      {
+        "title": "Tuple Types",
+        "description": "Tuples allow you to define an array with fixed types and lengths.",
+        "code": [
+          "let tuple: [string, number] = ['Hello', 10];",
+          "console.log(tuple[0]); // 'Hello'"
+        ]
+      },
+      {
+        "title": "Union Types",
+        "description": "Union types allow a variable to hold multiple types.",
+        "code": [
+          "let id: number | string = '1234';",
+          "id = 5678; // Valid"
+        ]
+      },
+      {
+        "title": "Type Assertions",
+        "description": "Type assertions allow you to override TypeScript's inferred type.",
+        "code": [
+          "let someValue: any = 'this is a string';",
+          "let strLength: number = (someValue as string).length;"
+        ]
+      },
+      {
+        "title": "Type Guards",
+        "description": "Type guards are used to narrow down the type of a variable.",
+        "code": [
+          "function isString(test: any): test is string {",
+          "    return typeof test === 'string';",
+          "}",
+          "let value: any = 'Hello';",
+          "if (isString(value)) {",
+          "    console.log(value.length);",
+          "}"
+        ]
+      },
+      {
+        "title": "Type Aliases",
+        "description": "Type aliases allow you to create a new name for a type.",
+        "code": [
+          "type ID = number | string;",
+          "let userId: ID = 'abc123';",
+          "userId = 42; // Valid"
+        ]
+      },
+      {
+        "title": "Void",
+        "description": "The `void` type represents the absence of a value, commonly used in functions.",
+        "code": [
+          "function log(message: string): void {",
+          "    console.log(message);",
+          "}",
+          "log('Hello, World!');"
+        ]
+      }
+    ]
+  }
+  

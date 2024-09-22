@@ -1,0 +1,163 @@
+{
+    "cheatsheet": [
+      {
+        "title": "Basic Types",
+        "code": [
+          "let isActive: boolean = true;",
+          "let username: string = 'JohnDoe';",
+          "let age: number = 30;",
+          "let hobbies: string[] = ['Reading', 'Traveling'];"
+        ]
+      },
+      {
+        "title": "Enums",
+        "code": [
+          "enum Direction {",
+          "    Up = 1,",
+          "    Down,",
+          "    Left,",
+          "    Right",
+          "}",
+          "let move: Direction = Direction.Up;"
+        ]
+      },
+      {
+        "title": "Interfaces",
+        "code": [
+          "interface User {",
+          "    id: number;",
+          "    name: string;",
+          "    email?: string; // Optional property",
+          "}",
+          "let user: User = {",
+          "    id: 1,",
+          "    name: 'Jane Doe'",
+          "};"
+        ]
+      },
+      {
+        "title": "Classes",
+        "code": [
+          "class Animal {",
+          "    constructor(public name: string) {}",
+          "    speak(): string {",
+          "        return `${this.name} makes a noise.`;",
+          "    }",
+          "}",
+          "class Dog extends Animal {",
+          "    speak(): string {",
+          "        return `${this.name} barks.`;",
+          "    }",
+          "}",
+          "const dog = new Dog('Buddy');"
+        ]
+      },
+      {
+        "title": "Functions",
+        "code": [
+          "function add(x: number, y: number): number {",
+          "    return x + y;",
+          "}",
+          "const result: number = add(5, 10);"
+        ]
+      },
+      {
+        "title": "Generics",
+        "code": [
+          "function identity<T>(arg: T): T {",
+          "    return arg;",
+          "}",
+          "let output = identity<string>('Hello, Generics!');"
+        ]
+      },
+      {
+        "title": "Union Types",
+        "code": [
+          "let id: number | string = '1234';",
+          "id = 5678; // Valid"
+        ]
+      },
+      {
+        "title": "Type Assertions",
+        "code": [
+          "let someValue: any = 'this is a string';",
+          "let strLength: number = (someValue as string).length;"
+        ]
+      },
+      {
+        "title": "Modules",
+        "code": [
+          "// Exporting a module",
+          "export const PI = 3.14;",
+          "// Importing a module",
+          "import { PI } from './constants';"
+        ]
+      },
+      {
+        "title": "Tuples",
+        "code": [
+          "let tuple: [string, number] = ['Hello', 10];",
+          "console.log(tuple[0]); // 'Hello'"
+        ]
+      },
+      {
+        "title": "Intersection Types",
+        "code": [
+          "interface Person {",
+          "    name: string;",
+          "}",
+          "interface Employee {",
+          "    id: number;",
+          "}",
+          "type EmployeePerson = Person & Employee;",
+          "const employee: EmployeePerson = {",
+          "    name: 'Alice',",
+          "    id: 1",
+          "};"
+        ]
+      },
+      {
+        "title": "Type Aliases",
+        "code": [
+          "type ID = number | string;",
+          "let userId: ID = 'abc123';",
+          "userId = 42; // Valid"
+        ]
+      },
+      {
+        "title": "Nullable Types",
+        "code": [
+          "let nullableString: string | null = null;",
+          "nullableString = 'Now I have a value';"
+        ]
+      },
+      {
+        "title": "Default Parameters",
+        "code": [
+          "function multiply(a: number, b: number = 1): number {",
+          "    return a * b;",
+          "}",
+          "const result = multiply(5); // 5"
+        ]
+      },
+      {
+        "title": "Rest Parameters",
+        "code": [
+          "function sum(...numbers: number[]): number {",
+          "    return numbers.reduce((acc, num) => acc + num, 0);",
+          "}",
+          "const total = sum(1, 2, 3, 4); // 10"
+        ]
+      },
+      {
+        "title": "Asynchronous Functions",
+        "code": [
+          "async function fetchData(): Promise<string> {",
+          "    return 'Data fetched';",
+          "}",
+          "fetchData().then(data => console.log(data));"
+        ]
+      }
+    ]
+  }
+  

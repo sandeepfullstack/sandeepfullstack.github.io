@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Interview Questions</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>TypeScript Interview Questions</h1>
+    <div id="questions"></div>
+
+    <script>
+        fetch('interview-questions.json')
+            .then(response => response.json())
+            .then(data => {
+                const questionsDiv = document.getElementById('questions');
+                data.interviewQuestions.forEach(item => {
+                    const section = document.createElement('section');
+                    const question = document.createElement('h2');
+                    question.textContent = item.question;
+                    section.appendChild(question);
+                    
+                    const description = document.createElement('p');
+                    description.textContent = item.description;
+                    section.appendChild(description);
+                    
+                    const answerBlock = document.createElement('pre');
+                    answerBlock.textContent = item.answer;
+                    section.appendChild(answerBlock);
+                    
+                    questionsDiv.appendChild(section);
+                });
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{
+    "interviewQuestions": [
+      {
+        "question": "What is TypeScript?",
+        "description": "TypeScript is a superset of JavaScript that adds static typing and other features to the language.",
+        "answer": "TypeScript enables developers to catch errors during development rather than runtime, and provides better tooling with IDEs."
+      },
+      {
+        "question": "What are the main benefits of using TypeScript?",
+        "description": "TypeScript provides several advantages over JavaScript, including type safety, better tooling, and improved maintainability.",
+        "answer": "Benefits include catching type-related errors at compile time, better autocompletion in IDEs, and easier refactoring."
+      },
+      {
+        "question": "What is the difference between an interface and a type alias in TypeScript?",
+        "description": "Both can be used to define object shapes, but they have some differences in their capabilities.",
+        "answer": "Interfaces can be extended and implemented, whereas type aliases cannot. However, type aliases can represent primitive types, unions, and tuples."
+      },
+      {
+        "question": "What are generics in TypeScript?",
+        "description": "Generics allow you to create reusable components that can work with any data type.",
+        "answer": "Generics enable you to write flexible and reusable code, allowing functions and classes to operate on types specified at runtime."
+      },
+      {
+        "question": "What is a union type in TypeScript?",
+        "description": "A union type allows a variable to hold multiple types.",
+        "answer": "For example, `let id: number | string;` means that the variable `id` can be either a number or a string."
+      },
+      {
+        "question": "What are type assertions?",
+        "description": "Type assertions allow you to override TypeScript's inferred type.",
+        "answer": "You can use the `as` syntax or angle-bracket syntax to tell TypeScript to treat a variable as a specific type."
+      },
+      {
+        "question": "What is the purpose of the `readonly` modifier?",
+        "description": "The `readonly` modifier makes properties immutable after initialization.",
+        "answer": "Properties marked with `readonly` cannot be reassigned, helping to enforce immutability."
+      },
+      {
+        "question": "What is a tuple in TypeScript?",
+        "description": "A tuple is an array with a fixed number of elements with specific types.",
+        "answer": "For example, `let tuple: [string, number] = ['Hello', 42];` defines a tuple with a string and a number."
+      },
+      {
+        "question": "What is the purpose of the `void` type?",
+        "description": "The `void` type represents the absence of a value, commonly used in functions that do not return a value.",
+        "answer": "A function declared to return `void` will not return any value and is typically used for procedures."
+      },
+      {
+        "question": "How do you handle asynchronous operations in TypeScript?",
+        "description": "TypeScript uses Promises and async/await syntax to handle asynchronous operations.",
+        "answer": "You can define functions as `async`, which allows you to use `await` to pause execution until a Promise is resolved."
+      },
+      {
+        "question": "What is a decorator in TypeScript?",
+        "description": "Decorators are special functions that can modify classes or properties.",
+        "answer": "Decorators are prefixed with `@` and can be used for logging, validation, or other cross-cutting concerns."
+      },
+      {
+        "question": "What are some common TypeScript utilities?",
+        "description": "TypeScript provides several utility types to manipulate types.",
+        "answer": "Common utilities include `Partial`, `Pick`, `Record`, and `Omit`, which help create new types from existing ones."
+      },
+      {
+        "question": "What is the `unknown` type in TypeScript?",
+        "description": "The `unknown` type represents a value that could be any type, similar to `any`, but is safer.",
+        "answer": "You must perform type checking before performing operations on variables of type `unknown`."
+      },
+      {
+        "question": "How does TypeScript improve code maintainability?",
+        "description": "TypeScript provides static type checking and interfaces, making code easier to understand and refactor.",
+        "answer": "By providing clear contracts for code structure, TypeScript helps prevent bugs and facilitates collaboration in larger teams."
+      },
+      {
+        "question": "What are the differences between `interface` and `class`?",
+        "description": "Both can define the structure of an object, but classes provide implementation.",
+        "answer": "An `interface` defines a contract for classes, while a `class` can implement methods and hold data."
+      },
+      {
+        "question": "What is type inference in TypeScript?",
+        "description": "Type inference is the ability of TypeScript to automatically deduce types based on the assigned value.",
+        "answer": "For example, if you write `let x = 5;`, TypeScript infers `x` as `number`."
+      }
+    ]
+  }
+  
