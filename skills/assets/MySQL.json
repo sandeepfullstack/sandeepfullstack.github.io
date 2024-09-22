@@ -1,0 +1,115 @@
+{
+    "MySQL": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "MySQL is an open-source relational database management system.",
+          "Features": "Supports SQL queries, ACID compliance, and is widely used for web applications."
+        },
+        "Installation": {
+          "Platforms": "Available for Windows, macOS, and Linux.",
+          "Basic Commands": {
+            "Download": "Download from the official MySQL website.",
+            "Start Server": "Run 'mysql.server start' or use system services."
+          }
+        },
+        "Basic Commands": {
+          "Connecting": {
+            "Syntax": "mysql -u username -p",
+            "Example": "mysql -u root -p"
+          },
+          "Creating a Database": {
+            "Syntax": "CREATE DATABASE database_name;"
+          },
+          "Selecting a Database": {
+            "Syntax": "USE database_name;"
+          }
+        },
+        "Tables": {
+          "Creating a Table": {
+            "Syntax": "CREATE TABLE table_name (column1 datatype, column2 datatype);",
+            "Example": "CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));"
+          },
+          "Inserting Data": {
+            "Syntax": "INSERT INTO table_name (column1, column2) VALUES (value1, value2);",
+            "Example": "INSERT INTO users (name) VALUES ('John Doe');"
+          }
+        }
+      },
+      "Intermediate": {
+        "Queries": {
+          "Selecting Data": {
+            "Syntax": "SELECT column1, column2 FROM table_name;",
+            "Example": "SELECT * FROM users;"
+          },
+          "Where Clause": {
+            "Syntax": "SELECT column1 FROM table_name WHERE condition;",
+            "Example": "SELECT * FROM users WHERE name = 'John Doe';"
+          },
+          "Joins": {
+            "Definition": "Combine rows from two or more tables based on related columns.",
+            "Example": {
+              "Inner Join": "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id;"
+            }
+          }
+        },
+        "Updating and Deleting": {
+          "Updating Data": {
+            "Syntax": "UPDATE table_name SET column1 = value1 WHERE condition;",
+            "Example": "UPDATE users SET name = 'Jane Doe' WHERE id = 1;"
+          },
+          "Deleting Data": {
+            "Syntax": "DELETE FROM table_name WHERE condition;",
+            "Example": "DELETE FROM users WHERE id = 1;"
+          }
+        },
+        "Indexes": {
+          "Creating an Index": {
+            "Syntax": "CREATE INDEX index_name ON table_name (column_name);",
+            "Example": "CREATE INDEX idx_name ON users (name);"
+          },
+          "Using Indexes": "Improves query performance by speeding up data retrieval."
+        },
+        "Transactions": {
+          "Definition": "A sequence of operations performed as a single logical unit.",
+          "Basic Syntax": {
+            "Start": "START TRANSACTION;",
+            "Commit": "COMMIT;",
+            "Rollback": "ROLLBACK;"
+          }
+        }
+      },
+      "Advanced": {
+        "Stored Procedures": {
+          "Definition": "A set of SQL statements that can be stored and reused.",
+          "Creating a Procedure": {
+            "Syntax": "CREATE PROCEDURE procedure_name (parameters) BEGIN SQL statements; END;",
+            "Example": "CREATE PROCEDURE GetUsers() BEGIN SELECT * FROM users; END;"
+          }
+        },
+        "Triggers": {
+          "Definition": "A set of instructions that are automatically executed in response to certain events.",
+          "Creating a Trigger": {
+            "Syntax": "CREATE TRIGGER trigger_name BEFORE/AFTER INSERT/UPDATE/DELETE ON table_name FOR EACH ROW BEGIN SQL statements; END;"
+          }
+        },
+        "Views": {
+          "Definition": "A virtual table based on the result of a SELECT query.",
+          "Creating a View": {
+            "Syntax": "CREATE VIEW view_name AS SELECT column1, column2 FROM table_name;"
+          }
+        },
+        "Replication": {
+          "Definition": "The process of copying and maintaining database objects in multiple databases.",
+          "Types": {
+            "Master-Slave": "One master database replicates to one or more slave databases.",
+            "Master-Master": "Two or more databases act as both master and slave."
+          }
+        },
+        "Optimization": {
+          "Indexing": "Using indexes to speed up queries.",
+          "Query Optimization": "Analyzing and improving query performance using EXPLAIN."
+        }
+      }
+    }
+  }
+  

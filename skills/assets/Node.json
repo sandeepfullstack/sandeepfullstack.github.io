@@ -1,0 +1,82 @@
+{
+    "Node": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "Node.js is a JavaScript runtime built on Chrome's V8 engine.",
+          "Usage": "Used for building scalable network applications."
+        },
+        "Modules": {
+          "Core Modules": {
+            "http": "Module to create HTTP servers and clients.",
+            "fs": "Module for file system operations.",
+            "path": "Module for handling and transforming file paths."
+          },
+          "Creating Modules": {
+            "Syntax": "module.exports = { myFunction };"
+          }
+        },
+        "NPM": {
+          "Definition": "Node Package Manager, used for managing packages.",
+          "Basic Commands": {
+            "install": "npm install package-name",
+            "uninstall": "npm uninstall package-name",
+            "init": "npm init to create a package.json file."
+          }
+        }
+      },
+      "Intermediate": {
+        "Asynchronous Programming": {
+          "Callbacks": "Functions passed as arguments to handle asynchronous operations.",
+          "Promises": "Object representing the eventual completion or failure of an asynchronous operation.",
+          "Async/Await": "Syntactic sugar for working with Promises."
+        },
+        "Express.js": {
+          "Overview": "A minimal web framework for Node.js.",
+          "Basic Usage": {
+            "Setup": "const express = require('express'); const app = express();",
+            "Routing": "app.get('/', (req, res) => { res.send('Hello World!'); });"
+          }
+        },
+        "File System Operations": {
+          "Reading Files": "const fs = require('fs'); fs.readFile('file.txt', 'utf8', (err, data) => { ... });",
+          "Writing Files": "fs.writeFile('file.txt', 'data', (err) => { ... });"
+        },
+        "Environment Variables": {
+          "Usage": "Access with process.env.VARIABLE_NAME."
+        }
+      },
+      "Advanced": {
+        "Middleware": {
+          "Definition": "Functions that have access to the request object, response object, and next middleware function.",
+          "Usage": "app.use((req, res, next) => { ... });"
+        },
+        "Error Handling": {
+          "Basic Handling": "app.use((err, req, res, next) => { res.status(500).send('Something broke!'); });"
+        },
+        "Database Interaction": {
+          "MongoDB": {
+            "Overview": "NoSQL database often used with Node.js.",
+            "Basic Usage": {
+              "Mongoose": "const mongoose = require('mongoose'); mongoose.connect('mongodb://localhost/test');"
+            }
+          },
+          "SQL Databases": {
+            "Using Sequelize": "const { Sequelize } = require('sequelize'); const sequelize = new Sequelize('database', 'username', 'password', { dialect: 'mysql' });"
+          }
+        },
+        "WebSockets": {
+          "Definition": "Protocol for full-duplex communication channels over a single TCP connection.",
+          "Basic Usage": {
+            "Using Socket.io": "const http = require('http'); const socketIo = require('socket.io'); const server = http.createServer(app); const io = socketIo(server);"
+          }
+        },
+        "Clustering": {
+          "Overview": "Using Node.js cluster module to create multiple instances of your application.",
+          "Basic Usage": {
+            "Clustering": "const cluster = require('cluster'); if (cluster.isMaster) { ... } else { ... }"
+          }
+        }
+      }
+    }
+  }
+  

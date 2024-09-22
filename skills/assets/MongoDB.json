@@ -1,0 +1,109 @@
+{
+    "MongoDB": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "MongoDB is a NoSQL database that uses a document-oriented data model.",
+          "Features": "Schema-less, high scalability, supports JSON-like documents."
+        },
+        "Installation": {
+          "Platforms": "Available for Windows, macOS, and Linux.",
+          "Basic Commands": {
+            "Download": "Download from the official MongoDB website.",
+            "Start Server": "Use 'mongod' to start the MongoDB server."
+          }
+        },
+        "Basic Commands": {
+          "Connecting": {
+            "Syntax": "mongo",
+            "Example": "mongo --host localhost --port 27017"
+          },
+          "Creating a Database": {
+            "Syntax": "use database_name;",
+            "Example": "use myDatabase;"
+          },
+          "Creating a Collection": {
+            "Syntax": "db.createCollection('collection_name');",
+            "Example": "db.createCollection('users');"
+          }
+        },
+        "Documents": {
+          "Inserting Documents": {
+            "Syntax": "db.collection_name.insert({ key: value });",
+            "Example": "db.users.insert({ name: 'John Doe', age: 30 });"
+          },
+          "Finding Documents": {
+            "Syntax": "db.collection_name.find();",
+            "Example": "db.users.find();"
+          }
+        }
+      },
+      "Intermediate": {
+        "Queries": {
+          "Finding Specific Documents": {
+            "Syntax": "db.collection_name.find({ key: value });",
+            "Example": "db.users.find({ name: 'John Doe' });"
+          },
+          "Updating Documents": {
+            "Syntax": "db.collection_name.update({ key: value }, { $set: { key: new_value } });",
+            "Example": "db.users.update({ name: 'John Doe' }, { $set: { age: 31 } });"
+          },
+          "Deleting Documents": {
+            "Syntax": "db.collection_name.remove({ key: value });",
+            "Example": "db.users.remove({ name: 'John Doe' });"
+          }
+        },
+        "Indexing": {
+          "Creating an Index": {
+            "Syntax": "db.collection_name.createIndex({ key: 1 });",
+            "Example": "db.users.createIndex({ name: 1 });"
+          },
+          "Using Indexes": "Improves query performance by speeding up searches."
+        },
+        "Aggregation": {
+          "Definition": "A framework for performing data processing and transformation.",
+          "Basic Syntax": {
+            "Example": "db.collection_name.aggregate([ { $match: { key: value } }, { $group: { _id: '$key', total: { $sum: '$value' } } } ]);"
+          }
+        },
+        "Schema Validation": {
+          "Overview": "MongoDB allows schema validation to enforce document structure.",
+          "Basic Example": {
+            "Syntax": "db.createCollection('users', { validator: { $jsonSchema: { bsonType: 'object', required: [ 'name', 'age' ], properties: { name: { bsonType: 'string' }, age: { bsonType: 'int' } } } } } });"
+          }
+        }
+      },
+      "Advanced": {
+        "Transactions": {
+          "Definition": "MongoDB supports multi-document ACID transactions.",
+          "Basic Syntax": {
+            "Example": "const session = client.startSession(); session.startTransaction();"
+          }
+        },
+        "Replication": {
+          "Definition": "The process of synchronizing data across multiple servers.",
+          "Types": {
+            "Replica Sets": "A group of MongoDB servers that maintain the same data set."
+          }
+        },
+        "Sharding": {
+          "Definition": "Distributing data across multiple servers to ensure scalability.",
+          "Basic Setup": {
+            "Example": "sh.shardCollection('myDatabase.myCollection', { shardKey: 1 });"
+          }
+        },
+        "Change Streams": {
+          "Overview": "Real-time notifications of changes in the database.",
+          "Basic Usage": {
+            "Example": "const changeStream = db.collection.watch(); changeStream.on('change', (change) => { console.log(change); });"
+          }
+        },
+        "GridFS": {
+          "Definition": "A specification for storing and retrieving large files.",
+          "Basic Usage": {
+            "Example": "const bucket = new GridFSBucket(db); bucket.uploadFromStream('file.txt', readableStream);"
+          }
+        }
+      }
+    }
+  }
+  

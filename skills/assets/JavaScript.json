@@ -1,0 +1,80 @@
+{
+    "JavaScript": {
+      "Beginner": {
+        "Variables": {
+          "let": "Block-scoped variable, can be reassigned.",
+          "const": "Block-scoped constant, cannot be reassigned.",
+          "var": "Function-scoped variable (not recommended)."
+        },
+        "Basic Types": {
+          "number": "Represents numeric values.",
+          "string": "Represents text values.",
+          "boolean": "Represents true/false values.",
+          "null": "Represents a null value.",
+          "undefined": "Represents an undefined value.",
+          "symbol": "Represents a unique identifier."
+        },
+        "Arrays": {
+          "Basic": "let array = [1, 2, 3];",
+          "Methods": {
+            "push": "Adds one or more elements to the end of an array.",
+            "pop": "Removes the last element from an array.",
+            "map": "Creates a new array with the results of calling a function on every element."
+          }
+        },
+        "Functions": {
+          "Declaration": "function add(a, b) { return a + b; }",
+          "Expression": "const add = function(a, b) { return a + b; };",
+          "Arrow Function": "const add = (a, b) => a + b;",
+          "Default Parameters": "function greet(name, greeting = 'Hello') { ... }"
+        },
+        "Objects": {
+          "Basic": "let obj = { key: 'value' };",
+          "Access": "obj.key or obj['key'];"
+        }
+      },
+      "Intermediate": {
+        "Scope": {
+          "Global": "Variables defined outside any function.",
+          "Local": "Variables defined within a function."
+        },
+        "Closures": {
+          "Concept": "A function that remembers its lexical scope even when the function is executed outside that scope."
+        },
+        "Promises": {
+          "Creating": "const promise = new Promise((resolve, reject) => { ... });",
+          "Chaining": "promise.then(result => { ... }).catch(error => { ... });"
+        },
+        "Async/Await": {
+          "Syntax": "async function fetchData() { const response = await fetch(url); }"
+        },
+        "Modules": {
+          "Export": "export const myValue = 42;",
+          "Import": "import { myValue } from './module';"
+        }
+      },
+      "Advanced": {
+        "Prototypes": {
+          "Prototype Chain": "Inheritance mechanism in JavaScript.",
+          "Creating": "function Person() { } Person.prototype.greet = function() { ... };"
+        },
+        "Classes": {
+          "Syntax": "class Person { constructor(name) { this.name = name; } }",
+          "Inheritance": "class Employee extends Person { ... }"
+        },
+        "Event Loop": {
+          "Concept": "JavaScript runs in a single-threaded environment but can handle asynchronous operations using callbacks, promises, and async/await."
+        },
+        "Error Handling": {
+          "Try/Catch": "try { ... } catch (error) { ... }",
+          "Throw": "throw new Error('Message');"
+        },
+        "Functional Programming": {
+          "Map": "Array.prototype.map() to transform data.",
+          "Filter": "Array.prototype.filter() to filter data.",
+          "Reduce": "Array.prototype.reduce() to accumulate data."
+        }
+      }
+    }
+  }
+  

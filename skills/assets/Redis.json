@@ -1,0 +1,74 @@
+{
+    "Redis": {
+      "Beginner": {
+        "Basic Concepts": {
+          "Key-Value Store": "Redis is an in-memory data structure store that can be used as a database, cache, and message broker.",
+          "Data Types": {
+            "String": "A simple key-value pair.",
+            "List": "A collection of ordered elements.",
+            "Set": "An unordered collection of unique elements.",
+            "Hash": "A collection of key-value pairs, similar to a dictionary.",
+            "Sorted Set": "A set of unique elements sorted by a score."
+          }
+        },
+        "Commands": {
+          "SET": "Sets the value of a key. Example: SET key value",
+          "GET": "Gets the value of a key. Example: GET key",
+          "DEL": "Deletes a key. Example: DEL key",
+          "EXISTS": "Checks if a key exists. Example: EXISTS key"
+        },
+        "Basic Usage": {
+          "Connecting": "Use a Redis client library to connect to the Redis server.",
+          "Setting Values": "Example: redisClient.set('key', 'value');",
+          "Getting Values": "Example: redisClient.get('key', (err, value) => { ... });"
+        }
+      },
+      "Intermediate": {
+        "Lists": {
+          "Commands": {
+            "LPUSH": "Adds an element to the beginning of a list. Example: LPUSH list value",
+            "RPUSH": "Adds an element to the end of a list. Example: RPUSH list value",
+            "LRANGE": "Gets a range of elements from a list. Example: LRANGE list start stop"
+          }
+        },
+        "Sets": {
+          "Commands": {
+            "SADD": "Adds a member to a set. Example: SADD set value",
+            "SREM": "Removes a member from a set. Example: SREM set value",
+            "SMEMBERS": "Returns all members of a set. Example: SMEMBERS set"
+          }
+        },
+        "Hashes": {
+          "Commands": {
+            "HSET": "Sets the value of a field in a hash. Example: HSET hash field value",
+            "HGET": "Gets the value of a field in a hash. Example: HGET hash field",
+            "HGETALL": "Gets all fields and values in a hash. Example: HGETALL hash"
+          }
+        }
+      },
+      "Advanced": {
+        "Transactions": {
+          "MULTI": "Starts a transaction. Example: MULTI",
+          "EXEC": "Executes all commands in the transaction. Example: EXEC",
+          "DISCARD": "Aborts the transaction. Example: DISCARD"
+        },
+        "Pub/Sub": {
+          "PUBLISH": "Sends a message to a channel. Example: PUBLISH channel message",
+          "SUBSCRIBE": "Subscribes to a channel. Example: SUBSCRIBE channel"
+        },
+        "Persistence": {
+          "RDB": "Snapshotting, saves data to disk at specified intervals.",
+          "AOF": "Append-only file, logs every write operation for data recovery."
+        },
+        "Redis Cluster": {
+          "Concept": "A distributed implementation of Redis with automatic partitioning.",
+          "Usage": "Use Redis client libraries that support clustering."
+        },
+        "Lua Scripting": {
+          "Syntax": "Scripts can be executed atomically using EVAL command. Example: EVAL script 0 key1 key2 arg1 arg2",
+          "Usage": "Used for complex operations that require multiple commands."
+        }
+      }
+    }
+  }
+  

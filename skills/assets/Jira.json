@@ -1,0 +1,90 @@
+{
+    "Jira": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "Jira is a project management tool developed by Atlassian for tracking issues, bugs, and project management.",
+          "Features": "Supports Agile methodologies, customizable workflows, and integration with various tools."
+        },
+        "Basic Concepts": {
+          "Issue": "A single work item that needs to be tracked, such as a task or bug.",
+          "Project": "A collection of issues grouped together, representing a larger body of work.",
+          "Board": "A visual representation of issues, typically used in Agile methodologies (Scrum or Kanban)."
+        },
+        "Getting Started": {
+          "Creating a Project": {
+            "Steps": "1. Click on 'Projects' > 'Create project'. 2. Choose a template. 3. Configure settings."
+          },
+          "Creating an Issue": {
+            "Steps": "1. Click on 'Create'. 2. Fill in the details (summary, description, type). 3. Click 'Create'."
+          }
+        },
+        "Basic Navigation": {
+          "Dashboard": "A customizable view that displays important information about projects and issues.",
+          "Filters": "Used to search and organize issues based on criteria."
+        }
+      },
+      "Intermediate": {
+        "Workflows": {
+          "Definition": "A series of steps that issues follow from creation to completion.",
+          "Customization": {
+            "Steps": "1. Go to 'Jira settings' > 'Issues' > 'Workflows'. 2. Edit or create a new workflow."
+          }
+        },
+        "Boards": {
+          "Creating a Scrum Board": {
+            "Steps": "1. Click on 'Boards' > 'Create board'. 2. Choose Scrum board and select project."
+          },
+          "Creating a Kanban Board": {
+            "Steps": "1. Click on 'Boards' > 'Create board'. 2. Choose Kanban board and select project."
+          }
+        },
+        "Sprints": {
+          "Definition": "A time-boxed iteration of work in Agile.",
+          "Managing Sprints": {
+            "Example": "Start a sprint from the Scrum board by selecting 'Start Sprint'."
+          }
+        },
+        "Custom Fields": {
+          "Definition": "Additional fields that can be added to issues to capture specific information.",
+          "Creating Custom Fields": {
+            "Steps": "1. Go to 'Jira settings' > 'Issues' > 'Custom fields'. 2. Click 'Add custom field'."
+          }
+        }
+      },
+      "Advanced": {
+        "Automation": {
+          "Definition": "Automate repetitive tasks within Jira.",
+          "Creating Rules": {
+            "Steps": "1. Go to 'Project settings' > 'Automation'. 2. Click 'Create rule'."
+          }
+        },
+        "Reporting": {
+          "Overview": "Generate reports to track project progress and team performance.",
+          "Types of Reports": {
+            "Burn-down Chart": "Tracks work completed versus planned work.",
+            "Control Chart": "Analyzes the flow of work over time."
+          }
+        },
+        "Integrations": {
+          "Overview": "Connect Jira with other tools to enhance functionality.",
+          "Popular Integrations": {
+            "Confluence": "Documentation tool that integrates with Jira.",
+            "Slack": "Messaging tool for team collaboration."
+          }
+        },
+        "Permissions and Roles": {
+          "Overview": "Manage user access and roles within projects.",
+          "Configuring Permissions": {
+            "Steps": "1. Go to 'Project settings' > 'Permissions'. 2. Edit roles and access levels."
+          }
+        },
+        "Advanced Searching with JQL": {
+          "Definition": "Jira Query Language (JQL) for advanced issue searching.",
+          "Basic Syntax": {
+            "Example": "project = 'MyProject' AND status = 'In Progress'"
+          }
+        }
+      }
+    }
+  }
+  

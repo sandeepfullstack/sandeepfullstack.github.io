@@ -1,0 +1,131 @@
+{
+    "Git": {
+      "Beginner": {
+        "Installation": {
+          "Overview": "Install Git on your system.",
+          "Commands": {
+            "Windows": "Download from the official Git website and install.",
+            "macOS": "brew install git",
+            "Linux": "sudo apt-get install git"
+          }
+        },
+        "Basic Configuration": {
+          "Set Username": {
+            "Command": "git config --global user.name 'Your Name'"
+          },
+          "Set Email": {
+            "Command": "git config --global user.email 'you@example.com'"
+          },
+          "Check Configuration": {
+            "Command": "git config --list"
+          }
+        },
+        "Repository Commands": {
+          "Create a Repository": {
+            "Command": "git init"
+          },
+          "Clone a Repository": {
+            "Command": "git clone <repository-url>"
+          }
+        }
+      },
+      "Intermediate": {
+        "Staging and Committing": {
+          "Add Files to Staging": {
+            "Command": "git add <file-name>"
+          },
+          "Commit Changes": {
+            "Command": "git commit -m 'Commit message'"
+          },
+          "Commit All Changes": {
+            "Command": "git commit -a -m 'Commit message'"
+          }
+        },
+        "Branching": {
+          "Create a New Branch": {
+            "Command": "git branch <branch-name>"
+          },
+          "Switch to a Branch": {
+            "Command": "git checkout <branch-name>"
+          },
+          "Create and Switch to a Branch": {
+            "Command": "git checkout -b <branch-name>"
+          },
+          "List Branches": {
+            "Command": "git branch"
+          }
+        },
+        "Merging": {
+          "Merge Branches": {
+            "Command": "git merge <branch-name>"
+          },
+          "Resolve Merge Conflicts": {
+            "Overview": "Edit files with conflicts, then stage and commit."
+          }
+        },
+        "Remote Repositories": {
+          "Add Remote": {
+            "Command": "git remote add origin <repository-url>"
+          },
+          "Push Changes": {
+            "Command": "git push origin <branch-name>"
+          },
+          "Fetch Changes": {
+            "Command": "git fetch"
+          },
+          "Pull Changes": {
+            "Command": "git pull origin <branch-name>"
+          }
+        }
+      },
+      "Advanced": {
+        "Rebasing": {
+          "Rebase Current Branch": {
+            "Command": "git rebase <branch-name>"
+          },
+          "Interactive Rebase": {
+            "Command": "git rebase -i <commit-hash>"
+          }
+        },
+        "Stashing": {
+          "Stash Changes": {
+            "Command": "git stash"
+          },
+          "Apply Stashed Changes": {
+            "Command": "git stash apply"
+          },
+          "List Stashed Changes": {
+            "Command": "git stash list"
+          }
+        },
+        "Tagging": {
+          "Create a Tag": {
+            "Command": "git tag <tag-name>"
+          },
+          "Push Tags to Remote": {
+            "Command": "git push origin --tags"
+          }
+        },
+        "History and Logs": {
+          "View Commit History": {
+            "Command": "git log"
+          },
+          "View Changes in a Commit": {
+            "Command": "git show <commit-hash>"
+          },
+          "View Changes": {
+            "Command": "git diff"
+          }
+        },
+        "Resetting Changes": {
+          "Reset to Previous Commit": {
+            "Command": "git reset --hard <commit-hash>"
+          },
+          "Unstage a File": {
+            "Command": "git reset <file-name>"
+          }
+        }
+      }
+    }
+  }
+  

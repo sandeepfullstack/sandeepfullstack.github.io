@@ -24,35 +24,79 @@
             padding: 10px;
             border-radius: 4px;
             overflow-x: auto;
+            /* overflow-x: visible; */
         }
     </style>
 </head>
 
 <body>
-    <h1>TypeScript Cheatsheet</h1>
+    <div id="skills"></div>
+    <h1>Cheatsheet</h1>
     <div id="cheatsheet"></div>
 
     <script>
+        const coursesDictionary = [
+            { "name": "Type Script", "fileName": "TypeScript" },
+            { "name": "Java Script", "fileName": "JavaScript" },
+            { "name": "Node JS", "fileName": "Node" },
+            { "name": "NestJS", "fileName": "NestJS" },
+            { "name": "Express.js", "fileName": "Expressjs" },
+            { "name": "MySQL", "fileName": "MySQL" },
+            { "name": "MongoDB", "fileName": "MongoDB" },
+            { "name": "Microservices", "fileName": "Microservices" },
+            { "name": "Docker", "fileName": "Docker" },
+            { "name": "Redis", "fileName": "Redis" },
+            { "name": "RabbitMQ", "fileName": "RabbitMQ" },
+            { "name": "Socket.IO", "fileName": "SocketIO" },
+            { "name": "Web3", "fileName": "Web3" },
+            { "name": "Jira", "fileName": "Jira" },
+            { "name": "Git", "fileName": "Git" },
+            { "name": "gRPC", "fileName": "GRPC" },
+            
+        ];
 
-        function renderCheatsheet(data, divId) {
+        // Function to get query string parameter value by name
+        function getQueryStringParameter(name) {
+            const regex = new RegExp(`[?&]${name}=([^&]*)`);
+            const results = regex.exec(window.location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        function renderSkills(data, divId) {
             const container = document.getElementById(divId);
             let html = '';
-
-            for (const [section, content] of Object.entries(data["TypeScript Cheatsheet"])) {
-                html += `<div class="section"><h2>${section}</h2>`;
-
-                for (const [category, details] of Object.entries(content)) {
-                    html += `<h3>${category}</h3><pre>${JSON.stringify(details, null, 2)}</pre>`;
-                }
-
-                html += `</div>`;
+            html += `<div class="section">`;
+            let countSkills = 0;
+            for (const obj of data) {
+                countSkills++;
+                html += `<b>${countSkills}:</b> <a href="?skill=${obj.fileName}">${obj.name}</a> ${countSkills == 1 ? '|' : ''} `;
             }
-
+            html += `</div>`;
             container.innerHTML = html;
         }
 
-        const coursesJsonFile = ['typeScript'];
-        const course = coursesJsonFile[0];
+
+        function renderCheatsheet(data, divId, courseName) {
+            const container = document.getElementById(divId);
+            let html = '';
+            html += `<h1>${courseName}</h1>`;
+            for (const [section, content] of Object.entries(data[courseName])) {
+                html += `<div class="section"><h2>${section}</h2>`;
+                for (const [category, details] of Object.entries(content)) {
+                    html += `<h3>${category}</h3><pre>${JSON.stringify(details, null, 2)}</pre>`;
+                }
+                html += `</div>`;
+            }
+            container.innerHTML = html;
+        }
+        renderSkills(coursesDictionary, 'skills');
+
+        const coursesJsonFile = ['TypeScript'];
+        const file = getQueryStringParameter('skill');
+        let course = coursesJsonFile[0];
+        if (file) {
+            console.log({ file });
+            course = file;
+        }
 
         fetch(`./assets/${course}.json`)
             .then(response => {
@@ -62,7 +106,7 @@
                 return response.json();
             })
             .then(data => {
-                renderCheatsheet(data, 'cheatsheet')
+                renderCheatsheet(data, 'cheatsheet', course)
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);

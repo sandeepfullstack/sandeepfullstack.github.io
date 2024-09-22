@@ -1,0 +1,108 @@
+{
+    "GRPC": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "gRPC is a high-performance, open-source RPC framework that uses HTTP/2 for transport.",
+          "Features": "Supports multiple languages, bi-directional streaming, and efficient serialization with Protocol Buffers."
+        },
+        "Installation": {
+          "Node.js": {
+            "Command": "npm install grpc @grpc/proto-loader"
+          },
+          "Python": {
+            "Command": "pip install grpcio grpcio-tools"
+          },
+          "Go": {
+            "Command": "go get google.golang.org/grpc"
+          }
+        },
+        "Basic Concepts": {
+          "Protocol Buffers": {
+            "Definition": "A language-neutral serialization format used by gRPC.",
+            "Example": "message MyMessage { string name = 1; int32 id = 2; }"
+          },
+          "Service Definition": {
+            "Syntax": "service MyService { rpc MyMethod(MyMessage) returns (MyResponse); }"
+          }
+        },
+        "Basic Commands": {
+          "Generating Code from Proto File": {
+            "Node.js": {
+              "Example": "protoc --proto_path=./proto --js_out=import_style=commonjs,binary:./generated ./proto/my_service.proto"
+            },
+            "Python": {
+              "Example": "python -m grpc_tools.protoc -I./proto --python_out=. --grpc_python_out=. ./proto/my_service.proto"
+            }
+          }
+        }
+      },
+      "Intermediate": {
+        "Creating a Server": {
+          "Node.js": {
+            "Example": "const server = new grpc.Server(); server.addService(MyService.service, { myMethod: (call, callback) => { ... } }); server.start();"
+          },
+          "Python": {
+            "Example": "server = grpc.server(futures.ThreadPoolExecutor(max_workers=10)); add_MyServiceServicer_to_server(MyServiceServicer(), server); server.start();"
+          }
+        },
+        "Creating a Client": {
+          "Node.js": {
+            "Example": "const client = new MyService('localhost:50051', grpc.credentials.createInsecure());"
+          },
+          "Python": {
+            "Example": "channel = grpc.insecure_channel('localhost:50051'); client = MyServiceStub(channel);"
+          }
+        },
+        "Error Handling": {
+          "Overview": "gRPC provides a set of status codes to handle errors.",
+          "Example": {
+            "Node.js": "callback({ code: grpc.status.NOT_FOUND, details: 'Not found' });"
+          }
+        },
+        "Streaming": {
+          "Server Streaming": {
+            "Example": "rpc MyMethod(MyRequest) returns (stream MyResponse);"
+          },
+          "Client Streaming": {
+            "Example": "rpc MyMethod(stream MyRequest) returns (MyResponse);"
+          },
+          "Bi-Directional Streaming": {
+            "Example": "rpc MyMethod(stream MyRequest) returns (stream MyResponse);"
+          }
+        }
+      },
+      "Advanced": {
+        "Authentication and Security": {
+          "Overview": "Implement authentication with SSL/TLS.",
+          "Example": {
+            "Node.js": "const credentials = grpc.credentials.createSsl(rootCA, privateKey, cert);"
+          }
+        },
+        "Load Balancing": {
+          "Overview": "Distributing requests across multiple server instances.",
+          "Example": "Use a gRPC load balancer or implement client-side load balancing."
+        },
+        "Interceptors": {
+          "Definition": "Middleware functions that can manipulate requests and responses.",
+          "Example": {
+            "Node.js": "const interceptor = (options, nextCall) => { return new InterceptingCall(nextCall(options), { /* interceptor logic */ }); };"
+          }
+        },
+        "Health Checking": {
+          "Overview": "Check the health of gRPC services.",
+          "Example": {
+            "Node.js": "const health = require('@grpc/grpc-js').load('grpc.health.v1.Health'); health.setStatus('service-name', { status: grpc.health.v1.HealthCheckResponse.SERVING });"
+          }
+        },
+        "Protobuf Features": {
+          "Enumerations": {
+            "Example": "enum MyEnum { VALUE_ONE = 0; VALUE_TWO = 1; }"
+          },
+          "Nested Messages": {
+            "Example": "message OuterMessage { message InnerMessage { string innerField = 1; } repeated InnerMessage innerMessages = 2; }"
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,109 @@
+{
+    "RabbitMQ": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "RabbitMQ is an open-source message broker that facilitates communication between distributed applications.",
+          "Features": "Supports multiple messaging protocols, reliable messaging, and high availability."
+        },
+        "Installation": {
+          "Platforms": "Available for Windows, macOS, and Linux.",
+          "Basic Commands": {
+            "Download": "Download from the official RabbitMQ website.",
+            "Start Server": "Use 'rabbitmq-server' to start the RabbitMQ server."
+          }
+        },
+        "Basic Concepts": {
+          "Message": "A piece of data sent from one application to another.",
+          "Queue": "A buffer that stores messages until they are processed.",
+          "Exchange": {
+            "Definition": "Routes messages to one or more queues based on rules."
+          }
+        },
+        "Basic Commands": {
+          "Starting RabbitMQ": {
+            "Syntax": "rabbitmq-server",
+            "Purpose": "Starts the RabbitMQ server."
+          },
+          "Listing Queues": {
+            "Syntax": "rabbitmqctl list_queues",
+            "Example": "rabbitmqctl list_queues name messages"
+          }
+        }
+      },
+      "Intermediate": {
+        "Exchanges": {
+          "Types": {
+            "Direct": "Routes messages to queues based on a routing key.",
+            "Fanout": "Broadcasts messages to all bound queues.",
+            "Topic": "Routes messages based on wildcard routing patterns."
+          }
+        },
+        "Producers and Consumers": {
+          "Producer": {
+            "Definition": "An application that sends messages to an exchange.",
+            "Example": {
+              "Syntax": "channel.basic_publish(exchange='exchange_name', routing_key='key', body='message')"
+            }
+          },
+          "Consumer": {
+            "Definition": "An application that receives messages from a queue.",
+            "Example": {
+              "Syntax": "channel.basic_consume(queue='queue_name', on_message_callback=callback, auto_ack=True)"
+            }
+          }
+        },
+        "Durability and Acknowledgments": {
+          "Durable Queues": {
+            "Definition": "Queues that survive a broker restart.",
+            "Syntax": "channel.queue_declare(queue='queue_name', durable=True)"
+          },
+          "Message Acknowledgments": {
+            "Overview": "Ensures messages are processed before removal from the queue."
+          }
+        },
+        "Routing Keys": {
+          "Definition": "Used by exchanges to route messages to queues.",
+          "Example": {
+            "Syntax": "channel.basic_publish(exchange='direct_logs', routing_key='info', body='Log message')"
+          }
+        }
+      },
+      "Advanced": {
+        "Clustering": {
+          "Definition": "Multiple RabbitMQ servers working together as a single broker.",
+          "Basic Commands": {
+            "Join Cluster": "rabbitmqctl join_cluster rabbit@<node_name>"
+          }
+        },
+        "High Availability": {
+          "Mirrored Queues": {
+            "Overview": "Queues that are replicated across multiple nodes.",
+            "Configuration": "Set up via policies to ensure redundancy."
+          }
+        },
+        "Management Plugin": {
+          "Overview": "Provides a web-based UI to manage and monitor RabbitMQ.",
+          "Basic Command": "rabbitmq-plugins enable rabbitmq_management"
+        },
+        "Message TTL and Dead Letter Exchanges": {
+          "Message TTL": {
+            "Definition": "Time-to-live for messages in a queue.",
+            "Example": {
+              "Syntax": "channel.queue_declare(queue='queue_name', arguments={'x-message-ttl': 60000})"
+            }
+          },
+          "Dead Letter Exchanges": {
+            "Definition": "A mechanism to handle messages that cannot be processed."
+          }
+        },
+        "Security": {
+          "Overview": "Securing RabbitMQ with users, permissions, and SSL.",
+          "Basic Commands": {
+            "Add User": "rabbitmqctl add_user username password",
+            "Set Permissions": "rabbitmqctl set_permissions -p vhost username '.*' '.*' '.*'"
+          }
+        }
+      }
+    }
+  }
+  

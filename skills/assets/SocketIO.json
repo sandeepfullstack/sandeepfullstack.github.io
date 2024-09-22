@@ -1,0 +1,93 @@
+{
+    "SocketIO": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "Socket.IO is a JavaScript library for real-time web applications, enabling bidirectional communication between clients and servers.",
+          "Features": "Supports event-based communication, automatic reconnections, and multiplexing."
+        },
+        "Installation": {
+          "Basic Command": {
+            "Node.js": "npm install socket.io",
+            "Client-side": "npm install socket.io-client"
+          }
+        },
+        "Basic Concepts": {
+          "Socket": "An instance representing a connection between a client and a server.",
+          "Event": "A named signal sent or received over a socket connection."
+        },
+        "Basic Commands": {
+          "Creating a Server": {
+            "Example": "const io = require('socket.io')(3000);"
+          },
+          "Connecting a Client": {
+            "Example": "const socket = io('http://localhost:3000');"
+          }
+        }
+      },
+      "Intermediate": {
+        "Emitting Events": {
+          "Server to Client": {
+            "Example": "io.emit('message', 'Hello, World!');"
+          },
+          "Client to Server": {
+            "Example": "socket.emit('message', 'Hello, Server!');"
+          }
+        },
+        "Listening for Events": {
+          "Server Side": {
+            "Example": "socket.on('message', (data) => { console.log(data); });"
+          },
+          "Client Side": {
+            "Example": "socket.on('message', (data) => { console.log(data); });"
+          }
+        },
+        "Namespaces": {
+          "Definition": "Separate logical channels for handling different events.",
+          "Basic Usage": {
+            "Example": "const nsp = io.of('/namespace');"
+          }
+        },
+        "Rooms": {
+          "Definition": "Groups of sockets that can communicate with each other.",
+          "Basic Commands": {
+            "Join Room": "socket.join('roomName');",
+            "Leave Room": "socket.leave('roomName');",
+            "Emit to Room": "io.to('roomName').emit('message', 'Hello Room!');"
+          }
+        }
+      },
+      "Advanced": {
+        "Middleware": {
+          "Definition": "Functions that can intercept and modify requests before they reach the route handlers.",
+          "Basic Usage": {
+            "Example": "io.use((socket, next) => { /* authentication logic */ next(); });"
+          }
+        },
+        "Error Handling": {
+          "Overview": "Managing errors that occur during socket communication.",
+          "Example": {
+            "Server Side": "socket.on('error', (err) => { console.error(err); });"
+          }
+        },
+        "Broadcasting": {
+          "Definition": "Sending messages to multiple clients.",
+          "Basic Commands": {
+            "Example": "socket.broadcast.emit('message', 'Hello everyone!');"
+          }
+        },
+        "Sticky Sessions": {
+          "Overview": "Ensuring a user is always connected to the same server instance.",
+          "Implementation": {
+            "Example": "Use a load balancer with session affinity."
+          }
+        },
+        "Scaling with Redis": {
+          "Overview": "Using Redis as a message broker to scale Socket.IO applications.",
+          "Basic Setup": {
+            "Example": "const redisAdapter = require('socket.io-redis'); io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));"
+          }
+        }
+      }
+    }
+  }
+  

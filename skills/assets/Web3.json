@@ -1,0 +1,105 @@
+{
+    "Web3": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "Web3 refers to the decentralized web, where applications run on blockchain technology.",
+          "Features": "Enables peer-to-peer interactions, enhanced security, and user ownership of data."
+        },
+        "Key Concepts": {
+          "Blockchain": "A distributed ledger technology that underpins cryptocurrencies.",
+          "Smart Contracts": "Self-executing contracts with the terms directly written into code.",
+          "Decentralized Applications (dApps)": "Applications that run on a blockchain network."
+        },
+        "Basic Installation": {
+          "Libraries": {
+            "Web3.js": {
+              "Command": "npm install web3",
+              "Usage": "Interacting with Ethereum blockchain."
+            },
+            "Ethers.js": {
+              "Command": "npm install ethers",
+              "Usage": "Lightweight library for Ethereum blockchain interactions."
+            }
+          }
+        },
+        "Basic Commands": {
+          "Connecting to Ethereum": {
+            "Example": "const Web3 = require('web3'); const web3 = new Web3('https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID');"
+          },
+          "Getting the Current Block Number": {
+            "Example": "web3.eth.getBlockNumber().then(console.log);"
+          }
+        }
+      },
+      "Intermediate": {
+        "Smart Contracts": {
+          "Definition": "Contracts that are deployed on the blockchain.",
+          "Basic Syntax": {
+            "Example": "pragma solidity ^0.8.0; contract MyContract { ... }"
+          },
+          "Deployment": {
+            "Using Truffle": {
+              "Command": "truffle migrate",
+              "Overview": "Deploys smart contracts to the blockchain."
+            }
+          }
+        },
+        "Interacting with Smart Contracts": {
+          "Reading Data": {
+            "Example": "const contract = new web3.eth.Contract(abi, contractAddress); contract.methods.methodName().call();"
+          },
+          "Writing Data": {
+            "Example": "contract.methods.methodName(params).send({ from: account });"
+          }
+        },
+        "Wallets and Transactions": {
+          "Creating a Wallet": {
+            "Example": "const wallet = web3.eth.accounts.create();"
+          },
+          "Sending Ether": {
+            "Example": "web3.eth.sendTransaction({ from: senderAddress, to: receiverAddress, value: amount });"
+          }
+        },
+        "Events": {
+          "Listening for Events": {
+            "Example": "contract.events.EventName({ filter: {}, fromBlock: 0 }, (error, event) => { console.log(event); });"
+          }
+        }
+      },
+      "Advanced": {
+        "Decentralized Finance (DeFi)": {
+          "Overview": "Financial applications built on blockchain technology.",
+          "Examples": {
+            "Uniswap": "A decentralized exchange for trading tokens.",
+            "Aave": "A decentralized lending and borrowing platform."
+          }
+        },
+        "Interoperability": {
+          "Definition": "The ability of different blockchain networks to communicate with each other.",
+          "Protocols": {
+            "Polkadot": "A network enabling different blockchains to transfer messages and value.",
+            "Cosmos": "A framework for building blockchain applications that can interoperate."
+          }
+        },
+        "Decentralized Identity": {
+          "Overview": "Giving users control over their own identity data.",
+          "Protocols": {
+            "DIDs": "Decentralized Identifiers, enabling users to manage their identity."
+          }
+        },
+        "Storage Solutions": {
+          "IPFS": {
+            "Definition": "InterPlanetary File System, a protocol for decentralized file storage.",
+            "Basic Usage": {
+              "Example": "const ipfs = require('ipfs-core');"
+            }
+          }
+        },
+        "Governance Tokens": {
+          "Definition": "Tokens that give holders voting rights in a decentralized organization.",
+          "Example": "Uniswap (UNI), Maker (MKR)."
+        }
+      }
+    }
+  }
+  

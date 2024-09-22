@@ -1,0 +1,94 @@
+{
+    "Microservices": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "Microservices is an architectural style that structures an application as a collection of loosely coupled services.",
+          "Features": "Enables continuous delivery, scalability, and fault isolation."
+        },
+        "Key Concepts": {
+          "Service": "An independent unit of functionality that can be deployed separately.",
+          "API": "Microservices communicate with each other using APIs, typically REST or gRPC.",
+          "Decentralization": "Data management and business logic are decentralized across services."
+        },
+        "Basic Architecture": {
+          "Diagram": "A simple representation of services communicating with each other and a gateway.",
+          "Components": {
+            "Service Discovery": "Finding the network locations of services.",
+            "API Gateway": "A single entry point for clients to interact with microservices."
+          }
+        }
+      },
+      "Intermediate": {
+        "Communication Patterns": {
+          "Synchronous": {
+            "Definition": "Direct calls between services (e.g., HTTP REST calls).",
+            "Example": "Service A calls Service B's API."
+          },
+          "Asynchronous": {
+            "Definition": "Services communicate through messaging (e.g., RabbitMQ, Kafka).",
+            "Example": "Service A sends a message to a queue that Service B listens to."
+          }
+        },
+        "Data Management": {
+          "Database Per Service": "Each microservice can have its own database.",
+          "CQRS": {
+            "Definition": "Command Query Responsibility Segregation separates reading and writing data.",
+            "Example": "Use different models for reading and writing operations."
+          }
+        },
+        "Deployment Strategies": {
+          "Containers": {
+            "Overview": "Using Docker to package microservices for consistent deployment.",
+            "Basic Command": "docker run -p 3000:3000 my-microservice"
+          },
+          "Orchestration": {
+            "Definition": "Managing containers at scale using tools like Kubernetes.",
+            "Basic Setup": "Define deployments and services in Kubernetes YAML files."
+          }
+        }
+      },
+      "Advanced": {
+        "Service Discovery": {
+          "Definition": "Automatically detecting services in a microservices architecture.",
+          "Tools": {
+            "Consul": "Service discovery and configuration management tool.",
+            "Eureka": "Service registry for microservices."
+          }
+        },
+        "API Gateway": {
+          "Definition": "A single entry point for routing requests to the appropriate microservice.",
+          "Tools": {
+            "Kong": "An open-source API gateway.",
+            "Zuul": "A gateway service that provides dynamic routing."
+          }
+        },
+        "Monitoring and Logging": {
+          "Overview": "Tools and practices to monitor microservices' health and performance.",
+          "Tools": {
+            "Prometheus": "Monitoring and alerting toolkit.",
+            "ELK Stack": "Elasticsearch, Logstash, and Kibana for logging and visualization."
+          }
+        },
+        "Security": {
+          "Authentication": {
+            "JWT": "JSON Web Tokens for stateless authentication.",
+            "OAuth2": "Authorization framework for third-party access."
+          },
+          "Service-to-Service Security": {
+            "Mutual TLS": "Securing communication between services with TLS."
+          }
+        },
+        "Resilience Patterns": {
+          "Circuit Breaker": {
+            "Definition": "Prevents an application from performing an operation that's likely to fail.",
+            "Example": "Using libraries like Hystrix."
+          },
+          "Bulkhead": {
+            "Definition": "Isolates different parts of the system to prevent cascading failures.",
+            "Example": "Allocating separate resources for different services."
+          }
+        }
+      }
+    }
+  }
+  

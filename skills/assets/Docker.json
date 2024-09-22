@@ -1,0 +1,105 @@
+{
+    "Docker": {
+      "Beginner": {
+        "Overview": {
+          "Definition": "Docker is a platform for developing, shipping, and running applications in containers.",
+          "Features": "Provides lightweight, portable, and self-sufficient containers."
+        },
+        "Installation": {
+          "Platforms": "Available for Windows, macOS, and Linux.",
+          "Basic Commands": {
+            "Download": "Download from the official Docker website.",
+            "Installation": "Follow the installation instructions for your operating system."
+          }
+        },
+        "Basic Commands": {
+          "Starting Docker": {
+            "Syntax": "docker run hello-world",
+            "Purpose": "Verifies that Docker is installed correctly."
+          },
+          "Listing Containers": {
+            "Syntax": "docker ps",
+            "Example": "docker ps -a (to see all containers)"
+          },
+          "Building an Image": {
+            "Syntax": "docker build -t image_name .",
+            "Example": "docker build -t myapp ."
+          }
+        },
+        "Images and Containers": {
+          "Images": {
+            "Definition": "Read-only templates used to create containers.",
+            "Basic Command": "docker images"
+          },
+          "Containers": {
+            "Definition": "Running instances of Docker images.",
+            "Basic Command": "docker run -d image_name"
+          }
+        }
+      },
+      "Intermediate": {
+        "Dockerfile": {
+          "Definition": "A text file that contains instructions for building a Docker image.",
+          "Basic Syntax": {
+            "Example": "FROM node:14\nCOPY . /app\nRUN npm install\nCMD ['node', 'app.js']"
+          }
+        },
+        "Volumes": {
+          "Definition": "Persistent storage for containers.",
+          "Basic Command": {
+            "Example": "docker run -v /host/path:/container/path image_name"
+          }
+        },
+        "Networking": {
+          "Definition": "Docker provides networking features for container communication.",
+          "Creating a Network": {
+            "Syntax": "docker network create network_name",
+            "Example": "docker network create mynetwork"
+          }
+        },
+        "Docker Compose": {
+          "Definition": "A tool for defining and running multi-container Docker applications.",
+          "Basic Usage": {
+            "Example": "docker-compose up",
+            "YAML Example": "version: '3'\nservices:\n  web:\n    image: nginx\n  db:\n    image: postgres"
+          }
+        }
+      },
+      "Advanced": {
+        "Docker Swarm": {
+          "Definition": "Docker's native clustering and orchestration tool.",
+          "Basic Commands": {
+            "Initialize Swarm": "docker swarm init",
+            "Deploying Services": "docker service create --name myservice image_name"
+          }
+        },
+        "Kubernetes Integration": {
+          "Overview": "Docker containers can be managed within Kubernetes for orchestration.",
+          "Basic Concepts": {
+            "Pods": "The smallest deployable units in Kubernetes that can contain one or more containers."
+          }
+        },
+        "Security Best Practices": {
+          "Overview": "Securing Docker containers and images.",
+          "Examples": {
+            "Limit Container Privileges": "Run containers as non-root users.",
+            "Scan Images": "Use tools like Trivy or Clair to scan images for vulnerabilities."
+          }
+        },
+        "Logging and Monitoring": {
+          "Overview": "Managing logs and monitoring container performance.",
+          "Tools": {
+            "ELK Stack": "Elasticsearch, Logstash, and Kibana for centralized logging.",
+            "Prometheus": "Monitoring tool for container metrics."
+          }
+        },
+        "Multi-Stage Builds": {
+          "Definition": "A technique to create smaller and more efficient Docker images.",
+          "Basic Syntax": {
+            "Example": "FROM node:14 AS build\nCOPY . .\nRUN npm install\nFROM nginx\nCOPY --from=build /app /usr/share/nginx/html"
+          }
+        }
+      }
+    }
+  }
+  
