@@ -44,3 +44,8 @@
 
 
 
+# Programming
+
+ ## Variables
+  - `A variable is used to store information so that you can use it and manipulate it later on.`
+  - let age = 21
