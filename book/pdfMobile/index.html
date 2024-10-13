@@ -1,94 +1,104 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>PDF Viewer</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        height: 90vh;
-        overflow: hidden;
-        font-family: Arial, sans-serif;
-      }
-      #canvas-container {
-        width: 100%;
-        height: calc(100vh - 60px);
-        overflow-y: auto;
-        border: 1px solid black;
-        box-sizing: border-box;
-        padding: 10px;
-      }
-      .pdf-page {
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-        page-break-inside: avoid;
-      }
+  <title>PDF Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 90vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #canvas-container {
+      width: 100%;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+      border: 1px solid black;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
+    .pdf-page {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+      page-break-inside: avoid;
+    }
+
+    #controls {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-top: 1px solid gray;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+    }
+
+    #controls button,
+    #controls input {
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+
+    #page_input {
+      width: 60px;
+    }
+
+    @media (max-width: 600px) {
       #controls {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        padding: 10px;
-        border-top: 1px solid gray;
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-        box-sizing: border-box;
+        flex-direction: column;
       }
-      #controls button, #controls input {
-        padding: 5px 10px;
-        font-size: 16px;
-      }
+
       #page_input {
-        width: 60px;
+        width: 100%;
       }
-      @media (max-width: 600px) {
-        #controls {
-          flex-direction: column;
-        }
-        #page_input {
-          width: 100%;
-        }
-      }
-    </style>
-    <script>
-      // http://localhost/a/index.html?book=./assets/Bhagavad-Gita.pdf
-      function getQueryStringParameter(name) {
-        const regex = new RegExp(`[?&]${name}=([^&]*)`);
-        const results = regex.exec(window.location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-      }
-      const file = getQueryStringParameter('book');
-        let pagesPerSet = getQueryStringParameter('pagesPerSet') || 7;
-      let url = './assets/Bhagavad-Gita.pdf';
-      if (!!file) {
-        url = file;
-      }
-    </script>
+    }
+  </style>
+  <script>
+    // http://localhost/a/index.html?book=./assets/Bhagavad-Gita.pdf
+    function getQueryStringParameter(name) {
+      const regex = new RegExp(`[?&]${name}=([^&]*)`);
+      const results = regex.exec(window.location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    const file = getQueryStringParameter('book');
+    let pagesPerSet = getQueryStringParameter('pagesPerSet') || 7;
+    let url = './assets/Bhagavad-Gita.pdf';
+    if (!!file) {
+      url = file;
+    }
+  </script>
 </head>
-<body>  
+
+<body>
   <script src="./assets/pdf.mjs" type="module"></script>
 
   <script type="module">
     var { pdfjsLib } = globalThis;
-          // The workerSrc property shall be specified.
-          pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/pdf.worker.mjs';    
+    // The workerSrc property shall be specified.
+    pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/pdf.worker.mjs';
 
     let pdfDoc = null,
-        currentPageNum = 1,
-        // pagesPerSet = getQueryStringParameter('pagesPerSet') || 5, //per set no of pages
-        scale = 2,  // Increased scale for higher quality
-        totalPages = 0,
-        startPage = 1,
-        endPage = pagesPerSet;
+      currentPageNum = 1,
+      // pagesPerSet = getQueryStringParameter('pagesPerSet') || 5, //per set no of pages
+      scale = 2,  // Increased scale for higher quality
+      totalPages = 0,
+      startPage = 1,
+      endPage = pagesPerSet;
 
     function renderPage(num, canvas) {
       if (!pdfDoc) return;
@@ -162,7 +172,7 @@
       endPage = Math.min(pagesPerSet, totalPages);
       renderPages(startPage, endPage);
       document.getElementById('page_count').textContent = totalPages;
-      document.getElementById('pagesPerSet').textContent = pagesPerSet;      
+      document.getElementById('pagesPerSet').textContent = pagesPerSet;
     });
   </script>
 
@@ -175,9 +185,10 @@
     <button id="go">Go</button>
     <span>
       Page: <span id="page_num"></span> / <span id="page_count"></span>
-      pagesPerSet: <span id="pagesPerSet"></span>  
-  </span>    
-    <a href="../index.html" >Books</a>
+      pagesPerSet: <span id="pagesPerSet"></span>
+    </span>
+    <a href="../index.html">Books</a>
   </div>
 </body>
+
 </html>
