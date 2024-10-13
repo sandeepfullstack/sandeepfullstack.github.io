@@ -67,7 +67,7 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
       }
       const file = getQueryStringParameter('book');
-      let pagesPerSet = getQueryStringParameter('pagesPerSet') || 7;
+        let pagesPerSet = getQueryStringParameter('pagesPerSet') || 7;
       let url = './assets/Bhagavad-Gita.pdf';
       if (!!file) {
         url = file;
