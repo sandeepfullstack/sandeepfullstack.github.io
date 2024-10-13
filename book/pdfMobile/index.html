@@ -83,7 +83,7 @@
 
     let pdfDoc = null,
         currentPageNum = 1,
-        pagesPerSet = 5, //per set no of pages
+        pagesPerSet = getQueryStringParameter('pagesPerSet') || 5, //per set no of pages
         scale = 2,  // Increased scale for higher quality
         totalPages = 0,
         startPage = 1,
@@ -161,6 +161,7 @@
       endPage = Math.min(pagesPerSet, totalPages);
       renderPages(startPage, endPage);
       document.getElementById('page_count').textContent = totalPages;
+      document.getElementById('pagesPerSet').textContent = pagesPerSet;      
     });
   </script>
 
@@ -171,7 +172,10 @@
     <button id="load_next_set">Load Next Set</button>
     <input type="number" id="page_input" min="1" />
     <button id="go">Go</button>
-    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+    <span>
+      Page: <span id="page_num"></span> / <span id="page_count"></span>
+      pagesPerSet: <span id="pagesPerSet"></span>  
+  </span>    
     <a href="../index.html" >Books</a>
   </div>
 </body>
