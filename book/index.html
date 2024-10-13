@@ -38,42 +38,43 @@
         fileList.innerHTML = ''; // Clear previous list            
 
         const pdfFiles = [
-                "hanuman-chalisa",
-                "Bhagavad-Gita",
-                "Bhagavad-Gita1",
-                "Bhagavad-gita-hindi",                
-                "Patanjali-Yoga-Sutras-Sanskrit-English",
-                "SriGuruGranthSahibJiDarpanEnglish",
-                "yog-dhrsan",
-                "ramcharitmanas",
-                "ShrimadValmikiRamayan",
-                "Ashtadhyayi",
-                "programming",
-                "800_SQL",
-                "interview-questions-and-answers-redis",
-                "interview-questions-mysql",
-                "interview-questions-node-js",
-                "interview-questions-typescript",
-                "interview-questions-mongodb",
-                "geeta/Chapter1",
-                "geeta/Chapter2",
-                "geeta/Chapter3",
-                "geeta/Chapter4",
-                "geeta/Chapter5",
-                "geeta/Chapter6",
-                "geeta/Chapter7",
-                "geeta/Chapter8",
-                "geeta/Chapter9",
-                "geeta/Chapter10",
-                "geeta/Chapter11",
-                "geeta/Chapter12",
-                "geeta/Chapter13",
-                "geeta/Chapter14",
-                "geeta/Chapter15",
-                "geeta/Chapter16",
-                "geeta/Chapter17",
-                "geeta/Chapter18",
-            ];
+            "hanuman-chalisa",
+            "Bhagavad-Gita",
+            "Bhagavad-Gita1",
+            "Bhagavad-gita-hindi",
+            "Patanjali-Yoga-Sutras-Sanskrit-English",
+            "SriGuruGranthSahibJiDarpanEnglish",
+            "yog-dhrsan",
+            "ramcharitmanas",
+            "ShrimadValmikiRamayan",
+            "Ashtadhyayi",
+            "SrimadBhagavadGita-english-hindi",
+            "geeta/Chapter1",
+            "geeta/Chapter2",
+            "geeta/Chapter3",
+            "geeta/Chapter4",
+            "geeta/Chapter5",
+            "geeta/Chapter6",
+            "geeta/Chapter7",
+            "geeta/Chapter8",
+            "geeta/Chapter9",
+            "geeta/Chapter10",
+            "geeta/Chapter11",
+            "geeta/Chapter12",
+            "geeta/Chapter13",
+            "geeta/Chapter14",
+            "geeta/Chapter15",
+            "geeta/Chapter16",
+            "geeta/Chapter17",
+            "geeta/Chapter18",
+            "programming",
+            "800_SQL",
+            "interview-questions-and-answers-redis",
+            "interview-questions-mysql",
+            "interview-questions-node-js",
+            "interview-questions-typescript",
+            "interview-questions-mongodb",
+        ];
         // Iterate over the FileList object and add each file name to the list
         for (let i = 0; i < pdfFiles.length; i++) {
             const fileName = pdfFiles[i];
@@ -91,8 +92,8 @@
 
             // for mobile 
             const mobileLink = document.createElement('a');
-            mobileLink.href='pdfMobile/index.html?book=../pdf/'+fileName+'.pdf';            
-            mobileLink.textContent = fileName; 
+            mobileLink.href = 'pdfMobile/index.html?book=../pdf/' + fileName + '.pdf';
+            mobileLink.textContent = fileName;
             // mobileLink.target = '_blank';                
             const listItemMobile = document.createElement('li');
             listItemMobile.appendChild(mobileLink);
