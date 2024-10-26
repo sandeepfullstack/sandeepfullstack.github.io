@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Playlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        audio {
+            margin-bottom: 20px;
+            width: 100%; /* Make audio player responsive */
+            max-width: 600px; /* Limit max width for larger screens */
+        }
+        .playlist {
+            width: 100%;
+            max-width: 600px; /* Limit max width for larger screens */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            overflow: hidden;
+        }
+        .track {
+            cursor: pointer;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .track:hover {
+            background-color: #e0e0e0; /* Highlight on hover */
+        }
+        .active {
+            background-color: #d3d3d3; /* Style for the active track */
+            font-weight: bold; /* Make active track bold */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Geeta English Audio<a href="../../../index.html">Books list</a></h1>
+
+<audio id="audioPlayer" controls>
+    <source id="audioSource" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<div class="playlist" id="playlist"></div>
+<script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audioSource = document.getElementById('audioSource');
+    const playlistContainer = document.getElementById('playlist');
+
+    const audioLists = [
+    { src: "./Chapter01.mp3", title: "Chapter1" },
+    { src: "./Chapter02.mp3", title: "Chapter2" },
+    { src: "./Chapter03.mp3", title: "Chapter3" },
+    { src: "./Chapter04.mp3", title: "Chapter4" },
+    { src: "./Chapter05.mp3", title: "Chapter5" },
+    { src: "./Chapter06.mp3", title: "Chapter6" },
+    { src: "./Chapter07.mp3", title: "Chapter7" },
+    { src: "./Chapter08.mp3", title: "Chapter8" },
+    { src: "./Chapter09.mp3", title: "Chapter9" },
+    { src: "./Chapter10.mp3", title: "Chapter10" },
+    { src: "./Chapter11.mp3", title: "Chapter11" },
+    { src: "./Chapter12.mp3", title: "Chapter12" },
+    { src: "./Chapter13.mp3", title: "Chapter13" },
+    { src: "./Chapter14.mp3", title: "Chapter14" },
+    { src: "./Chapter15.mp3", title: "Chapter15" },
+    { src: "./Chapter16.mp3", title: "Chapter16" },
+    { src: "./Chapter17.mp3", title: "Chapter17" },
+    { src: "./Chapter18.mp3", title: "Chapter18" },
+    { src: "./Prakkathan.mp3", title: "Prakkathan" },
+    { src: "./Upasham.mp3", title: "Upasham" },
+    ];
+
+    // Clear previous list (if any)
+    playlistContainer.innerHTML = '';
+
+    // Populate the playlist dynamically
+    audioLists.forEach((audio) => {
+        const trackDiv = document.createElement('div');
+        trackDiv.className = 'track';
+        trackDiv.setAttribute('data-src', audio.src);
+        trackDiv.textContent = audio.title;
+
+        trackDiv.addEventListener('click', function() {
+            // Remove 'active' class from all tracks
+            const tracks = document.querySelectorAll('.track');
+            tracks.forEach(t => t.classList.remove('active'));
+            
+            // Add 'active' class to the clicked track
+            this.classList.add('active');
+
+            audioSource.src = this.getAttribute('data-src');
+            audioPlayer.load();
+            audioPlayer.play();
+        });
+
+        playlistContainer.appendChild(trackDiv);
+    });
+</script>
+
+</body>
+</html>
