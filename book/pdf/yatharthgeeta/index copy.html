@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Playlist</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .playlist { margin-top: 20px; }
+        .track { cursor: pointer; margin: 5px 0; padding: 5px; }
+        .active { background-color: #d3d3d3; } /* Style for the active track */
+    </style>
+</head>
+<body>
+
+<h1>My Audio Playlist</h1>
+
+<audio id="audioPlayer" controls>
+    <source id="audioSource" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<div class="playlist" id="playlist"></div>
+
+<script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audioSource = document.getElementById('audioSource');
+    const playlistContainer = document.getElementById('playlist');
+
+    const audioLists = [
+        { src: "audio1.mp3", title: "Track 1: Song Title 1" },
+        { src: "audio2.mp3", title: "Track 2: Song Title 2" },
+        { src: "audio3.mp3", title: "Track 3: Song Title 3" }
+    ];
+
+    // Clear previous list (if any)
+    playlistContainer.innerHTML = '';
+
+    // Populate the playlist dynamically
+    audioLists.forEach((audio, index) => {
+        const trackDiv = document.createElement('div');
+        trackDiv.className = 'track';
+        trackDiv.setAttribute('data-src', audio.src);
+        trackDiv.textContent = audio.title;
+
+        trackDiv.addEventListener('click', function() {
+            // Remove 'active' class from all tracks
+            const tracks = document.querySelectorAll('.track');
+            tracks.forEach(t => t.classList.remove('active'));
+            
+            // Add 'active' class to the clicked track
+            this.classList.add('active');
+
+            audioSource.src = this.getAttribute('data-src');
+            audioPlayer.load();
+            audioPlayer.play();
+        });
+
+        playlistContainer.appendChild(trackDiv);
+    });
+</script>
+
+</body>
+</html>
