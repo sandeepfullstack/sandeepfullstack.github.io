@@ -26,12 +26,11 @@
         .playlist {
             width: 100%;
             max-width: 600px; /* Limit max width for larger screens */
-            max-height: 400px; /* Set a max height for the playlist */
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 10px;
-            overflow-y: auto; /* Enable vertical scrolling */
+            overflow: hidden;
         }
         .track {
             cursor: pointer;
@@ -51,7 +50,7 @@
 </head>
 <body>
 
-<h1>Geeta English Audio<a href="../../../index.html"> Books list</a></h1>
+<h1>Geeta English Audio<a href="../../../index.html">Books list</a></h1>
 
 <audio id="audioPlayer" controls>
     <source id="audioSource" src="" type="audio/mpeg">
@@ -65,26 +64,26 @@
     const playlistContainer = document.getElementById('playlist');
 
     const audioLists = [
-        { src: "./Chapter01.mp3", title: "Chapter 1" },
-        { src: "./Chapter02.mp3", title: "Chapter 2" },
-        { src: "./Chapter03.mp3", title: "Chapter 3" },
-        { src: "./Chapter04.mp3", title: "Chapter 4" },
-        { src: "./Chapter05.mp3", title: "Chapter 5" },
-        { src: "./Chapter06.mp3", title: "Chapter 6" },
-        { src: "./Chapter07.mp3", title: "Chapter 7" },
-        { src: "./Chapter08.mp3", title: "Chapter 8" },
-        { src: "./Chapter09.mp3", title: "Chapter 9" },
-        { src: "./Chapter10.mp3", title: "Chapter 10" },
-        { src: "./Chapter11.mp3", title: "Chapter 11" },
-        { src: "./Chapter12.mp3", title: "Chapter 12" },
-        { src: "./Chapter13.mp3", title: "Chapter 13" },
-        { src: "./Chapter14.mp3", title: "Chapter 14" },
-        { src: "./Chapter15.mp3", title: "Chapter 15" },
-        { src: "./Chapter16.mp3", title: "Chapter 16" },
-        { src: "./Chapter17.mp3", title: "Chapter 17" },
-        { src: "./Chapter18.mp3", title: "Chapter 18" },
-        { src: "./Prakkathan.mp3", title: "Prakkathan" },
-        { src: "./Upasham.mp3", title: "Upasham" },
+    { src: "./Chapter01.mp3", title: "Chapter1" },
+    { src: "./Chapter02.mp3", title: "Chapter2" },
+    { src: "./Chapter03.mp3", title: "Chapter3" },
+    { src: "./Chapter04.mp3", title: "Chapter4" },
+    { src: "./Chapter05.mp3", title: "Chapter5" },
+    { src: "./Chapter06.mp3", title: "Chapter6" },
+    { src: "./Chapter07.mp3", title: "Chapter7" },
+    { src: "./Chapter08.mp3", title: "Chapter8" },
+    { src: "./Chapter09.mp3", title: "Chapter9" },
+    { src: "./Chapter10.mp3", title: "Chapter10" },
+    { src: "./Chapter11.mp3", title: "Chapter11" },
+    { src: "./Chapter12.mp3", title: "Chapter12" },
+    { src: "./Chapter13.mp3", title: "Chapter13" },
+    { src: "./Chapter14.mp3", title: "Chapter14" },
+    { src: "./Chapter15.mp3", title: "Chapter15" },
+    { src: "./Chapter16.mp3", title: "Chapter16" },
+    { src: "./Chapter17.mp3", title: "Chapter17" },
+    { src: "./Chapter18.mp3", title: "Chapter18" },
+    { src: "./Prakkathan.mp3", title: "Prakkathan" },
+    { src: "./Upasham.mp3", title: "Upasham" },
     ];
 
     // Clear previous list (if any)
