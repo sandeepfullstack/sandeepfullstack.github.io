@@ -47,22 +47,6 @@
             background-color: #d3d3d3; /* Style for the active track */
             font-weight: bold; /* Make active track bold */
         }
-        .controls {
-            margin-top: 20px;
-        }
-        button {
-            margin: 0 5px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
@@ -73,11 +57,6 @@
     <source id="audioSource" src="" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
-
-<div class="controls">
-    <button id="prevButton">Previous</button>
-    <button id="nextButton">Next</button>
-</div>
 
 <div class="playlist" id="playlist"></div>
 <script>
@@ -106,53 +85,30 @@
         { src: "./ch18.mp3", title: "Chapter 18" },
     ];
 
-    let currentTrackIndex = -1; // Initialize current track index
-
     // Clear previous list (if any)
     playlistContainer.innerHTML = '';
 
     // Populate the playlist dynamically
-    audioLists.forEach((audio, index) => {
+    audioLists.forEach((audio) => {
         const trackDiv = document.createElement('div');
         trackDiv.className = 'track';
         trackDiv.setAttribute('data-src', audio.src);
         trackDiv.textContent = audio.title;
 
         trackDiv.addEventListener('click', function() {
-            playTrack(index);
-        });
-
-        playlistContainer.appendChild(trackDiv);
-    });
-
-    // Function to play a track
-    function playTrack(index) {
-        if (index >= 0 && index < audioLists.length) {
             // Remove 'active' class from all tracks
             const tracks = document.querySelectorAll('.track');
             tracks.forEach(t => t.classList.remove('active'));
             
             // Add 'active' class to the clicked track
-            tracks[index].classList.add('active');
+            this.classList.add('active');
 
-            audioSource.src = audioLists[index].src;
+            audioSource.src = this.getAttribute('data-src');
             audioPlayer.load();
             audioPlayer.play();
-            currentTrackIndex = index; // Update the current track index
-        }
-    }
+        });
 
-    // Add event listeners for next and previous buttons
-    document.getElementById('prevButton').addEventListener('click', function() {
-        if (currentTrackIndex > 0) {
-            playTrack(currentTrackIndex - 1);
-        }
-    });
-
-    document.getElementById('nextButton').addEventListener('click', function() {
-        if (currentTrackIndex < audioLists.length - 1) {
-            playTrack(currentTrackIndex + 1);
-        }
+        playlistContainer.appendChild(trackDiv);
     });
 </script>
 
