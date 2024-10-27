@@ -6,13 +6,16 @@ const path = require('path');
 // Playlist URL
 // const list='PLHLIDF7TFbcLL10FgbmxzQWVXZb_mMmI8'; // श्रीमद् भगवद गीता
 // const list='PLHLIDF7TFbcI8u23WycnSmka3A_Ni4DZb'; // श्रीमद्भागवत महापुराण
-const list='PLHLIDF7TFbcJHYGy7oZdxzvT9LKBv9kls'; // श्री वाल्मीकि रामायण
+// const list='PLHLIDF7TFbcJHYGy7oZdxzvT9LKBv9kls'; // श्री वाल्मीकि रामायण
+const list='PLxq1RSkJshlPi5AjG-570UOzabbYPJ0WD'; // श्हनुमान चालीसा का अर्थ
+
 
 
 const playlistUrl = `https://www.youtube.com/playlist?list=${list}`;
 
 // Directory to save MP3s
-const outputDir = 'downloads';
+// const outputDir = 'downloads';
+const outputDir = 'hanumanChalisa';
 
 // Create output directory if it doesn't exist
 if (!fs.existsSync(outputDir)) {
@@ -55,7 +58,7 @@ const downloadPlaylist = async (url) => {
     let noOfIdx = 1;
     for (const videoUrl of videos) {
         console.log(`Downloading: ${videoUrl} as ch${noOfIdx}`);
-        // await downloadVideo(videoUrl, `ch${noOfIdx}`);
+        await downloadVideo(videoUrl, `ch${noOfIdx}`);
         noOfIdx++;
     }
 };
