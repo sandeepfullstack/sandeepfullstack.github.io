@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,24 +16,28 @@
             flex-direction: column;
             align-items: center;
         }
+
         h1 {
             margin-bottom: 20px;
         }
+
         audio {
             margin-bottom: 20px;
-            width: 100%; /* Make audio player responsive */
-            max-width: 600px; /* Limit max width for larger screens */
+            width: 100%;
+            max-width: 600px;
         }
+
         .playlist {
             width: 100%;
-            max-width: 600px; /* Limit max width for larger screens */
-            max-height: 400px; /* Set a max height for the playlist */
+            max-width: 600px;
+            max-height: 800px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 10px;
-            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-y: auto;
         }
+
         .track {
             cursor: pointer;
             margin: 5px 0;
@@ -40,16 +45,20 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
+
         .track:hover {
-            background-color: #e0e0e0; /* Highlight on hover */
+            background-color: #e0e0e0;
         }
+
         .active {
-            background-color: #d3d3d3; /* Style for the active track */
-            font-weight: bold; /* Make active track bold */
+            background-color: #d3d3d3;
+            font-weight: bold;
         }
+
         .controls {
             margin-top: 20px;
         }
+
         button {
             margin: 0 5px;
             padding: 10px;
@@ -60,85 +69,108 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
+
 <body>
 
-<h1>Hanuman Chalisa Audio<a href="../index.html"> Books list</a></h1>
+    <h1>Hanuman Chalisa Audio<a href="../index.html"> Books list</a></h1>
 
-<audio id="audioPlayer" controls>
-    <source id="audioSource" src="" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+    <audio id="audioPlayer" controls>
+        <source id="audioSource" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-<div class="controls">
-    <button id="prevButton">Previous</button>
-    <button id="nextButton">Next</button>
-</div>
+    <div class="controls">
+        <button id="prevButton">Previous</button>
+        <button id="nextButton">Next</button>
+    </div>
 
-<div class="playlist" id="playlist"></div>
-<script>
-    const audioPlayer = document.getElementById('audioPlayer');
-    const audioSource = document.getElementById('audioSource');
-    const playlistContainer = document.getElementById('playlist');
-    let audioLists = [];
-        for (let index = 1; index < 31; index++) {
-            audioLists.push({ src: `./ch${index}.mp3`, title: `Chapter ${index}` });
-        }
-    // const audioLists1 = [{ src: "./ch1.mp3", title: "Chapter 1" }];
+    <div class="playlist" id="playlist"></div>
 
-    let currentTrackIndex = -1; // Initialize current track index
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioSource = document.getElementById('audioSource');
+        const playlistContainer = document.getElementById('playlist');
+        let audioLists = [];
+        let srNo = 1;
+        const folderLimits = [
+            { folder: 1, limit: 30 }
+        ];
 
-    // Clear previous list (if any)
-    playlistContainer.innerHTML = '';
+        folderLimits.forEach(({ folder, limit }) => {
+            for (let index = 1; index <= limit; index++) {
+                audioLists.push({ src: `./ch${index}.mp3`, title: `Chapter ${index}` });
 
-    // Populate the playlist dynamically
-    audioLists.forEach((audio, index) => {
-        const trackDiv = document.createElement('div');
-        trackDiv.className = 'track';
-        trackDiv.setAttribute('data-src', audio.src);
-        trackDiv.textContent = audio.title;
-
-        trackDiv.addEventListener('click', function() {
-            playTrack(index);
+                /* audioLists.push({
+                    src: `./${folder}/${index}.mp3`,
+                    title: `Chapter ${folder}-${index} (${srNo})`
+                }); */
+                srNo++;
+            }
         });
 
-        playlistContainer.appendChild(trackDiv);
-    });
+        let currentTrackIndex = -1; // Initialize current track index
 
-    // Function to play a track
-    function playTrack(index) {
-        if (index >= 0 && index < audioLists.length) {
-            // Remove 'active' class from all tracks
-            const tracks = document.querySelectorAll('.track');
-            tracks.forEach(t => t.classList.remove('active'));
-            
-            // Add 'active' class to the clicked track
-            tracks[index].classList.add('active');
+        // Clear previous list (if any)
+        playlistContainer.innerHTML = '';
 
-            audioSource.src = audioLists[index].src;
-            audioPlayer.load();
-            audioPlayer.play();
-            currentTrackIndex = index; // Update the current track index
+        // Populate the playlist dynamically
+        audioLists.forEach((audio, index) => {
+            const trackDiv = document.createElement('div');
+            trackDiv.className = 'track';
+            trackDiv.setAttribute('data-src', audio.src);
+            trackDiv.textContent = audio.title;
+
+            trackDiv.addEventListener('click', function () {
+                playTrack(index);
+            });
+
+            playlistContainer.appendChild(trackDiv);
+        });
+
+        // Function to play a track
+        function playTrack(index) {
+            if (index >= 0 && index < audioLists.length) {
+                // Remove 'active' class from all tracks
+                const tracks = document.querySelectorAll('.track');
+                tracks.forEach(t => t.classList.remove('active'));
+
+                // Add 'active' class to the clicked track
+                tracks[index].classList.add('active');
+
+                audioSource.src = audioLists[index].src;
+                audioPlayer.load();
+                audioPlayer.play();
+                currentTrackIndex = index; // Update the current track index
+            }
         }
-    }
 
-    // Add event listeners for next and previous buttons
-    document.getElementById('prevButton').addEventListener('click', function() {
-        if (currentTrackIndex > 0) {
-            playTrack(currentTrackIndex - 1);
-        }
-    });
+        // Add event listeners for next and previous buttons
+        document.getElementById('prevButton').addEventListener('click', function () {
+            if (currentTrackIndex > 0) {
+                playTrack(currentTrackIndex - 1);
+            }
+        });
 
-    document.getElementById('nextButton').addEventListener('click', function() {
-        if (currentTrackIndex < audioLists.length - 1) {
-            playTrack(currentTrackIndex + 1);
-        }
-    });
-</script>
+        document.getElementById('nextButton').addEventListener('click', function () {
+            if (currentTrackIndex < audioLists.length - 1) {
+                playTrack(currentTrackIndex + 1);
+            }
+        });
+
+        // Add event listener to play the next track when the current track ends
+        audioPlayer.addEventListener('ended', function () {
+            if (currentTrackIndex < audioLists.length - 1) {
+                playTrack(currentTrackIndex + 1);
+            }
+        });
+    </script>
 
 </body>
+
 </html>
