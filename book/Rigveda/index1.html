@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play m3u8 Stream</title>
+</head>
+<body>
+    <h1>Play m3u8 Playlist in HTML5 Audio</h1>
+    
+    <!-- Audio Player -->
+    <audio id="audioPlayer" controls>
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Include HLS.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <script>
+        // Check if HLS.js is supported
+        if (Hls.isSupported()) {
+            var audio = document.getElementById('audioPlayer');
+            var hls = new Hls();
+
+            // URL to the m3u8 stream
+            var m3u8Url = './playlist.m3u8';
+
+            // Bind the HLS.js stream to the audio element
+            hls.loadSource(m3u8Url);
+            hls.attachMedia(audio);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                console.log('Manifest loaded');
+            });
+
+            hls.on(Hls.Events.ERROR, function (event, data) {
+                console.error('Error:', data);
+            });
+        } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+            // For Safari, HLS is natively supported
+            audio.src = './playlist.m3u8';
+        } else {
+            console.error('Your browser does not support HLS');
+        }
+    </script>
+
+</body>
+</html>
