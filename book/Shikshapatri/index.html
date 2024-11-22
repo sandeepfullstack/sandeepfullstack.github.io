@@ -104,7 +104,9 @@
         ];
 
         folderLimits.forEach(({ folder, limit }) => {
-            for (let index = 1; index <= limit; index++) {
+            
+            // for (let index = 1; index <= limit; index++) {
+                for (let index = limit; index >= 1; index--) {       
                 audioLists.push({ src: `./ch${index}.mp3`, title: `Chapter ${index}` });
 
                 /* audioLists.push({
