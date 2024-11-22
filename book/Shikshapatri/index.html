@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,19 +101,30 @@
         const folderLimits = [
             { folder: 1, limit: 24 }
         ];
-
+        const isDescending = true;
         folderLimits.forEach(({ folder, limit }) => {
-            
-            // for (let index = 1; index <= limit; index++) {
-                for (let index = limit; index >= 1; index--) {       
-                audioLists.push({ src: `./ch${index}.mp3`, title: `Chapter ${index}` });
+            if (isDescending) {
+                for (let index = limit; index >= 1; index--) {
+                    audioLists.push({ src: `./ch${index}.mp3`, title: `Chapter ${index}` });
+                    /* audioLists.push({
+                        src: `./${folder}/${index}.mp3`,
+                        title: `Chapter ${folder}-${index} (${srNo})`
+                    }); */
+                    srNo++;
+                }
+            } else {
+                for (let index = 1; index <= limit; index++) {
+                    audioLists.push({ src: `./ch${index}.mp3`, title: `Chapter ${index}` });
 
-                /* audioLists.push({
-                    src: `./${folder}/${index}.mp3`,
-                    title: `Chapter ${folder}-${index} (${srNo})`
-                }); */
-                srNo++;
+                    /* audioLists.push({
+                        src: `./${folder}/${index}.mp3`,
+                        title: `Chapter ${folder}-${index} (${srNo})`
+                    }); */
+                    srNo++;
+                }
             }
+
+
         });
 
         let currentTrackIndex = -1; // Initialize current track index
