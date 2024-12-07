@@ -88,7 +88,28 @@ ffmpeg -i input.mp3 -f segment -segment_time 600 -c copy output%03d.mp3
 
 
 
+```sh
+# <=================================================================>
+# just echo files
+for file in *.mp3; do
+  echo "Compressing with VBR: $file"  
+done
+# just echo files in single line
+for file in *.mp3; do echo "Compressing with VBR: $file"; done
+# check file size
+for file in *.mp3; do du -sh $file; done
 
+# ffmpeg -i "ch1.mp3" -q:a 1  # size increeased 1 greater and 9 is smalleset
+# ffmpeg -i "ch1.mp3" -q:a 9  # size descrease
+for file in *.mp3; do
+  echo "Compressing with VBR: $file"
+  ffmpeg -i "$file" -q:a 9 "/data/ytpl/PatanjalisYogaSutras/compressed/$file"
+done
+# <=================================================================>
+
+for file in *.mp3; do   echo "Compressing with VBR: $file"
+  ffmpeg -i "$file" -q:a 9 "/data/ytpl/PatanjalisYogaSutras/compressed/$file"; done
+```
 
 
 
