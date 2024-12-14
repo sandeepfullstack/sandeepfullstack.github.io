@@ -51,14 +51,21 @@
         const languageDiv = document.createElement('div');
         languageDiv.classList.add('media-item');
         languageDiv.innerHTML = `<h2>${language.toUpperCase()}</h2>`;
-        
+        // languageDiv.appendChild('<a href="audioPlayer/index.html?file_name=/JSON/HanumanChalisaVikrantSinghTomar.json">Hanuman Chalisa</a>');
         files.forEach(file => {
-          const audioElement = document.createElement('audio');
+          console.log(file);
+          const anchorElement = document.createElement('a');
+      anchorElement.href = `media/pdf/${file}`; // Path to the PDF
+      anchorElement.target = "_blank"; // Open in a new tab
+      anchorElement.textContent = file; // Display the file name as the link text
+      languageDiv.appendChild(anchorElement);
+      
+          /* const audioElement = document.createElement('audio');
           const sourceElement = document.createElement('source');
           sourceElement.src = `media/audio/${file}`;
           sourceElement.type = "audio/mp3";
           audioElement.appendChild(sourceElement);
-          languageDiv.appendChild(audioElement);
+          languageDiv.appendChild(audioElement); */
         });
 
         audioContainer.appendChild(languageDiv);
