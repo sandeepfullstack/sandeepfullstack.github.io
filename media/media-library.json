@@ -1,0 +1,19 @@
+{
+    "media": {
+      "pdfs": {
+        "hindi": ["10.pdf", "11.pdf"],
+        "english": ["12.pdf", "13.pdf"],
+        "sanskrit": ["12.pdf", "13.pdf"]
+      },
+      "audios": {
+        "hindi": ["song1.mp3", "song2.mp3"],
+        "english": ["song3.mp3", "song4.mp3"]
+      },
+      "videos": {
+        "hindi": ["movie1.mp4", "movie2.mp4"],
+        "english": ["movie3.mp4", "movie4.mp4"],
+        "sanskrit": ["movie5.mp4", "movie6.mp4"]
+      }
+    }
+  }
+  
