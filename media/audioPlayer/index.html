@@ -135,7 +135,17 @@
         /* Media Query for smaller screens */
         @media (max-width: 600px) {
             .audio-player {
-                padding: 15px;
+                padding: 10px;
+                /* Reduce padding */
+                width: 95%;
+                /* Increase width slightly */
+                height: 90vh;
+                /* Ensure player takes up most of the screen */
+            }
+
+            .playlist {
+                max-height: 35vh;
+                /* Set the height to 30% of the viewport height on small screens */
             }
 
             .controls button {
@@ -150,13 +160,28 @@
                 height: 4px;
             }
         }
+
+        @media (max-width: 400px) {
+            .audio-player {
+                width: 100%;
+                /* Make the player width 100% */
+                height: 90vh;
+                /* Keep the player at 90% height of the viewport */
+            }
+
+            .playlist {
+                max-height: 35vh;
+                /* Reduce playlist height even more on small screens */
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="audio-player">
-        <h2 id="libraryName">Audio Player</h2><a href="../../book/" >Back</a>
+        <h2 id="libraryName">Audio Player</h2>
+        <a href="../index.html">Back</a>
         <audio id="audio" preload="metadata"></audio>
         <div class="title" id="audioTitle">Track Title</div>
 
@@ -221,9 +246,9 @@
 
     <script>
         // http://localhost/media/audioPlayer/?file_name=/JSON/HanumanChalisaVikrantSinghTomar.json
-        // http://localhost/sandeepfullstack.github.io/media/audioPlayer/?file_name=/JSON/HanumanChalisaVikrantSinghTomar.json
         const BASE_PATH = 'https://raw.githubusercontent.com/sandeepfullstack/media/master';
         // const BASE_PATH='http://localhost/media';
+        // const BASE_PATH = '../';
         const tracks = [];
         // Function to get query string parameter value by name
         function getQueryStringParameter(name) {
@@ -296,8 +321,8 @@
                         artist: 'Panghal Library',
                         album: 'Album Name',
                         artwork: [
-                            { src:   './my-music-player.png', sizes: '96x96', type: 'image/jpeg' },
-                            { src:  './my-music-player.png', sizes: '128x128', type: 'image/jpeg' }
+                            { src: './my-music-player.png', sizes: '96x96', type: 'image/jpeg' },
+                            { src: './my-music-player.png', sizes: '128x128', type: 'image/jpeg' }
                         ]
                     });
 
