@@ -154,7 +154,9 @@
 <body>
 
     <div class="container">
-        <h1>Krishan Library <a href="../book/">Back</a></h1>
+        <h1> Krishan Library
+            <a href="../book/">Back</a>
+        </h1>
 
         <!-- Audio Library Section -->
         <div class="category" id="audio">
@@ -223,7 +225,11 @@
             <p>${item.name}</p>
             <a href="${category}/${subcategory}/${item.filename}" target="_blank">View Image</a>
           `;
-                    } else {
+                    } else if(category === 'pdf'){
+                        // mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" target="_blank">Download</a>`;                        
+                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" >Play pc</a> | <a href="${item.filename_mobile}" >Play Mobile</a>`;                        
+                    }
+                    else {
                         // mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" target="_blank">Download</a>`;                        
                         mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" >Play</a>`;                        
                     }
