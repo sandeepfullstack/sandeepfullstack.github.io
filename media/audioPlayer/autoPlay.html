@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Playlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        audio {
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .playlist {
+            width: 100%;
+            max-width: 600px;
+            max-height: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .track {
+            cursor: pointer;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .track:hover {
+            background-color: #e0e0e0;
+        }
+
+        .active {
+            background-color: #d3d3d3;
+            font-weight: bold;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 0 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 id="libraryName">Audio Player</h2>
+        <a href="../index.html">Back</a>
+
+    <audio id="audioPlayer" controls>
+        <source id="audioSource" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="controls">
+        <button id="prevButton">Previous</button>
+        <button id="nextButton">Next</button>
+    </div>
+
+    <div class="playlist" id="playlist"></div>
+
+    <script>
+// http://localhost/media/audioPlayer/autoPlay.html?file_name=/JSON/VedantaVikrantSinghTomar.json
+        const BASE_PATH = 'https://raw.githubusercontent.com/sandeepfullstack/media/master';
+        // const BASE_PATH='http://localhost/media';
+        // const BASE_PATH = '../';
+        let audioLists = [];
+        // Function to get query string parameter value by name
+        function getQueryStringParameter(name) {
+            const regex = new RegExp(`[?&]${name}=([^&]*)`);
+            const results = regex.exec(window.location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        async function loadMediaLibrary(apiPath) {
+            const response = await fetch(apiPath);
+            const result = await response.json();
+            if (!!result) {
+                const file_folder = result?.path;
+                const libraryName = document.getElementById('libraryName');
+                libraryName.textContent = result?.title;
+                result?.data.forEach(async (file) => {
+                    const title = file.length > 10 ? file.substring(0, 18) + '...' : file;
+                    await audioLists.push({ src: `${BASE_PATH + '/' + file_folder + file}`, title: title.replace('.mp3', '') });
+                })
+            }
+        }
+
+        (async () => {
+            const file_name = getQueryStringParameter('file_name');
+            if (!!file_name) {
+                // '/JSON/HanumanChalisaVikrantSinghTomar.json'
+                fileLocation = BASE_PATH + file_name;
+                // console.log(fileLocation);
+            }
+            await loadMediaLibrary(fileLocation);
+            // console.log(tracks);
+        
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioSource = document.getElementById('audioSource');
+        const playlistContainer = document.getElementById('playlist');
+       
+
+        let currentTrackIndex = -1; // Initialize current track index
+
+        // Clear previous list (if any)
+        playlistContainer.innerHTML = '';
+            console.log(audioLists);
+
+        // Populate the playlist dynamically
+        audioLists.forEach((audio, index) => {
+            const trackDiv = document.createElement('div');
+            trackDiv.className = 'track';
+            trackDiv.setAttribute('data-src', audio.src);
+            trackDiv.textContent = audio.title;
+
+            trackDiv.addEventListener('click', function () {
+                playTrack(index);
+            });
+
+            playlistContainer.appendChild(trackDiv);
+        });
+
+        // Function to play a track
+        function playTrack(index) {
+            if (index >= 0 && index < audioLists.length) {
+                // Remove 'active' class from all tracks
+                const tracks = document.querySelectorAll('.track');
+                tracks.forEach(t => t.classList.remove('active'));
+
+                // Add 'active' class to the clicked track
+                tracks[index].classList.add('active');
+
+                audioSource.src = audioLists[index].src;
+                audioPlayer.load();
+                audioPlayer.play();
+                currentTrackIndex = index; // Update the current track index
+            }
+        }
+
+        // Add event listeners for next and previous buttons
+        document.getElementById('prevButton').addEventListener('click', function () {
+            if (currentTrackIndex > 0) {
+                playTrack(currentTrackIndex - 1);
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', function () {
+            if (currentTrackIndex < audioLists.length - 1) {
+                playTrack(currentTrackIndex + 1);
+            }
+        });
+
+        // Add event listener to play the next track when the current track ends
+        audioPlayer.addEventListener('ended', function () {
+            if (currentTrackIndex < audioLists.length - 1) {
+                playTrack(currentTrackIndex + 1);
+            }
+        });
+    })()
+    </script>
+
+</body>
+
+</html>
