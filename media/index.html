@@ -225,9 +225,9 @@
             <p>${item.name}</p>
             <a href="${category}/${subcategory}/${item.filename}" target="_blank">View Image</a>
           `;
-                    } else if(category === 'pdf'){
+                    }  else if(category === 'pdf'){
                         // mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" target="_blank">Download</a>`;                        
-                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" >Play pc</a> | <a href="${item.filename_mobile}" >Play Mobile</a>`;                        
+                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename_mobile}" >Mobile</a></br><a href="${item.filename}" >PC</a>`;                        
                     }
                     else {
                         // mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" target="_blank">Download</a>`;                        
