@@ -16,8 +16,9 @@ const monthNames = [
 
 const resumeData = {
   title: "SandeepResume",
-  name: "Sandeep Kumar (Software Engineer)",
+  name: "Sandeep Kumar (Sr. Software Engineer)",
   designation: "Sr. Software Engineer",
+  // name: "Sandeep Kumar",
   contact: {
     email: '<a href="mailto:ladwapanghal@gmail.com">ladwapanghal@gmail.com</a>',
     phone: '<a href="tel:+918685004675">+918685004675</a>',
@@ -101,11 +102,9 @@ const resumeData = {
     "Git",
     "GRPC",
     "Integration (BTC, BCH, ETH, XRP, ADA, LTC etc.)",
-    "Third-party Integration",
-    // "Third-party Integration (PayPal, Stripe, push notifications etc.)",
+    "Third-party Integration (PayPal, Stripe, push notifications etc.)",
   ],
-  secondarySkills: ["PHP","React", "Angular"],
-  // secondarySkills: ["PHP", "CodeIgniter", "Laravel", "React", "Angular"],
+  secondarySkills: ["PHP", "CodeIgniter", "Laravel", "React", "Angular"],
 
   projects: [
     {
