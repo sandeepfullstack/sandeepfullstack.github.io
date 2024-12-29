@@ -225,15 +225,27 @@
             <p>${item.name}</p>
             <a href="${category}/${subcategory}/${item.filename}" target="_blank">View Image</a>
           `;
-                    }  else if(category === 'pdf'){
+                    } else if (category === 'pdf') {
                         // mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" target="_blank">Download</a>`;                        
-                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename_mobile}" >Mobile</a></br><a href="${item.filename}" >PC</a>`;                        
-                    }else if(category === 'audio'){
-                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename_autoplay}" >Auto Play</a></br><a href="${item.filename}" >Play</a>`;                                                
+                        let anchorr = `<p>${item.name}</p><a href="${item.filename_mobile}" >Mobile</a></br>
+                        <a href="${item.filename}" >PC</a>`;
+                        if (item?.file_text_mobile) {
+                            anchorr += `<br><a href="${item.file_text_mobile}" >Mobile text</a>`;
+                        }
+                        if (item?.file_text_canva_mobile) {
+                            anchorr += `<br><a href="${item.file_text_canva_mobile}" >Mobile text+canva</a>`;
+                        }
+                        if (item?.file_canva_mobile) {
+                            anchorr += `<br><a href="${item.file_canva_mobile}" >Mobile canva</a>`;
+                        }
+
+                        mediaItem.innerHTML = anchorr;
+                    } else if (category === 'audio') {
+                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename_autoplay}" >Auto Play</a></br><a href="${item.filename}" >Play</a>`;
                     }
                     else {
                         // mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" target="_blank">Download</a>`;                        
-                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" >Play</a>`;                        
+                        mediaItem.innerHTML = `<p>${item.name}</p><a href="${item.filename}" >Play</a>`;
                     }
                     mediaList.appendChild(mediaItem);
                 });

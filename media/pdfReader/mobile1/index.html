@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read PDF in HTML</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script> -->
+    <script src="./assets/pdf.min.js"></script>
+    <script src="./assets/pdf.worker.min.js"></script>
+    <style>
+        #pdf-container {
+            width: 100%;
+            height: 600px;
+            overflow: auto;
+        }
+
+        .pdf-text {
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../../index.html">Books</a>    
+    <!-- <input type="file" id="upload-pdf" /> -->
+    <div id="pdf-container"></div>
+
+    <script>
+    const BASE_PATH = 'https://raw.githubusercontent.com/sandeepfullstack/media/master';
+    // const BASE_PATH = 'http://localhost/media';
+    // const BASE_PATH = '../../';
+
+    function getQueryStringParameter(name) {
+      const regex = new RegExp(`[?&]${name}=([^&]*)`);
+      const results = regex.exec(window.location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    const file = getQueryStringParameter('book');
+    let pagesPerSet = getQueryStringParameter('pagesPerSet') || 10;
+    const dataToShow = { text: getQueryStringParameter('text') || 'true', canva: getQueryStringParameter('canva') || 'true' };
+    let url = BASE_PATH + '/media/pdf/hanuman-chalisa.pdf';
+    if (!!file) {
+      url = BASE_PATH + file;
+    }
+
+
+        // const url = './AmericanLiterature_English.pdf';
+        // const dataToShow = { text: true, canva: true };
+        // const dataToShow = { text: true, canva: false };        
+        // const dataToShow = { text: false, canva: true };
+        fetchPDF(url);
+        function fetchPDF(pdfPath) {
+            fetch(pdfPath)
+                .then(response => response.arrayBuffer()) // Get the PDF as an ArrayBuffer
+                .then(data => {
+                    renderPDF(data); // Pass the data to the renderPDF function
+                })
+                .catch(error => console.error('Error fetching the PDF:', error));
+        }
+
+
+        async function renderPDF(pdfData) {
+            const pdfContainer = document.getElementById('pdf-container');
+
+            // Using pdf.js to load the PDF from the data
+            pdfjsLib.getDocument(pdfData).promise.then(async function (pdf) {
+                console.log('PDF loaded');
+                const totalPages = pdf.numPages;
+                console.log('PDF totalPages', totalPages);
+
+                // Clear any existing content in the container
+                pdfContainer.innerHTML = '';
+
+                // Render each page
+                for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                    try {
+                        // Get page content asynchronously
+                        const page = await pdf.getPage(pageNumber);
+
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+                        const scale = 1.5; // Set the scale of the page (zoom level)
+                        const viewport = page.getViewport({ scale });
+
+                        // Set canvas size to match the PDF page
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        // Render the page to the canvas
+                        await page.render({ canvasContext: context, viewport: viewport }).promise;
+                        if (dataToShow.canva && dataToShow.canva == 'true') {
+                            pdfContainer.appendChild(canvas);
+                        }
+                        if (dataToShow.text && dataToShow.text == 'true') {
+                            // Extract text content for copying
+                            const textContent = await page.getTextContent();
+                            const text = textContent.items.map(item => item.str).join(' ');
+
+                            const textNode = document.createElement('div');
+                            textNode.classList.add('pdf-text');
+                            textNode.innerText = `Page No. ${pageNumber} => \n\n ` + text;
+
+                            pdfContainer.appendChild(textNode);
+                        }
+                    } catch (error) {
+                        console.error(`Error processing page ${pageNumber}:`, error);
+                    }
+                }
+
+            }, function (error) {
+                console.error('Error loading PDF: ' + error);
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
